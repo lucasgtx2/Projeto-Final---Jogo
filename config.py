@@ -1,12 +1,12 @@
 #configurações
 from os import path
-
+  
 # Estabelece a pasta que contem as figuras e sons.
 IMG_DIR = path.join(path.dirname(__file__), 'assets', 'imagens')
-'''FALTA ESCOLHER SOM
-SND_DIR = path.join(path.dirname(__file__), 'assets', 'som')
-FNT_DIR = path.join(path.dirname(__file__), 'assets', 'fonte')
-'''
+
+SND_DIR = path.join(path.dirname(__file__), 'assets', 'sons')
+'''FNT_DIR = path.join(path.dirname(__file__), 'assets', 'fonte')'''
+
 # Dados gerais do jogo.
 WIDTH = 1024 # Largura da tela
 HEIGHT = 768 # Altura da tela
