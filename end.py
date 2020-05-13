@@ -1,0 +1,1 @@
+#tela final, apos perder.
