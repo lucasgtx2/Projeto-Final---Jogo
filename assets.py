@@ -20,6 +20,7 @@ VENTO_SND = 'vento_snd'
 MUSICA_JOGO_SND = 'musica_do_jogo_snd'
 MUSICA_INICIAL_SND = 'musica_inicial_snd'
 PODER_SND = 'poder_snd'
+MORDIDA_SND = 'mordida_snd'
 
 '''#ainda nao definimos o score
 SCORE_FONT = 'score_font'
@@ -69,4 +70,8 @@ def load_assets():
     pygame.mixer.music.set_volume(0.4)
     assets[PODER_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'som do poder.wav'))
     
+    pygame.mixer.music.load(os.path.join(SND_DIR, 'mordida som.mp3'))
+    pygame.mixer.music.set_volume(0.4)
+    assets[PODER_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'mordida som.mp3'))
+
     return assets
