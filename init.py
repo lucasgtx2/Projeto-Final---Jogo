@@ -4,17 +4,15 @@ import random
 import os
 
 from config import IMG_DIR, BLACK, FPS, GAME, QUIT, WIDTH, HEIGHT 
-from assets import load_assets
+from assets import *
 
 def init_screen(screen):
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
-
-
+    assets = load_assets()
+    
     #Carrega o fundo da tela inicial
-    '''background = assets['init_background_img']
-    background_rect = background.get_rect()'''
-    background = pygame.image.load(os.path.join(IMG_DIR, 'init background.jpg')).convert_alpha()
+    background = assets[INIT_BACKGROUND]
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
     background_rect = background.get_rect()
 
@@ -41,5 +39,8 @@ def init_screen(screen):
                     running = False
         
         screen.blit(background, background_rect)
+
+        #Atualiza o background
+        pygame.display.flip()
 
     return state

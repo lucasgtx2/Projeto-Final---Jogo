@@ -39,7 +39,7 @@ def load_assets():
     assets[PINGUIMD_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pinguim deitado.jpg')).convert_alpha()
     assets[PINGUIMD_IMG] = pygame.transform.scale(assets['pinguim_deitado_img'], (PINGUIMD_WIDTH, PINGUIMD_HEIGHT))
 
-    assets[PINGUIMP_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pinguim em pe.jpg')).convert_alpha()
+    assets[PINGUIMP_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pinguim em pe.png')).convert_alpha()
     assets[PINGUIMP_IMG] = pygame.transform.scale(assets['pinguim_em_pe_img'], (PINGUIMP_WIDTH, PINGUIMP_HEIGHT))
 
     assets[SALMAOC_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'salmao carne.jpg')).convert_alpha()
@@ -56,32 +56,33 @@ def load_assets():
     
     
     #Carrega os sons:
-    pygame.mixer.music.load(os.path.join(SND_DIR, 'explosao arcade.wav'))
+    pygame.mixer.music.load(os.path.join(SND_DIR, 'explosao-arcade.wav'))
     pygame.mixer.music.set_volume(0.4)
-    assets[EXPLOSAO_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'explosao arcade.wav'))
+    assets[EXPLOSAO_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'explosao-arcade.wav'))
 
-    pygame.mixer.music.load(os.path.join(SND_DIR, 'som pedra.flac'))
-    pygame.mixer.music.set_volume(0.4)
-    assets[PEDRA_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'som pedra.flac'))
+    #pygame.mixer.music.load(os.path.join(SND_DIR, 'som pedra.flac'))
+    #pygame.mixer.music.set_volume(0.4)
+    #assets[PEDRA_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'som pedra.flac'))
 
-    pygame.mixer.music.load(os.path.join(SND_DIR, 'vento.m4a'))
+    pygame.mixer.music.load(os.path.join(SND_DIR, 'vento.wav'))
     pygame.mixer.music.set_volume(0.4)
-    assets[VENTO_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'vento.m4a'))
+    assets[VENTO_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'vento.wav'))
 
-    pygame.mixer.music.load(os.path.join(SND_DIR, 'musica de fundo.mp3'))
+    pygame.mixer.music.load(os.path.join(SND_DIR, 'musica-de-fundo.wav'))
     pygame.mixer.music.set_volume(0.4)
-    assets[MUSICA_JOGO_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'musica de fundo.mp3'))
+    assets[MUSICA_JOGO_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'musica-de-fundo.wav'))
 
-    pygame.mixer.music.load(os.path.join(SND_DIR, 'musica tela inicial.mp3'))
+    pygame.mixer.music.load(os.path.join(SND_DIR, 'musica-tela-inicial.wav'))
     pygame.mixer.music.set_volume(0.4)
-    assets[MUSICA_INICIAL_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'musica tela inicial.mp3'))
+    assets[MUSICA_INICIAL_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'musica-tela-inicial.wav'))
 
-    pygame.mixer.music.load(os.path.join(SND_DIR, 'som do poder.wav'))
+    pygame.mixer.music.load(os.path.join(SND_DIR, 'som-do-poder.wav'))
     pygame.mixer.music.set_volume(0.4)
-    assets[PODER_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'som do poder.wav'))
+    assets[PODER_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'som-do-poder.wav'))
     
-    pygame.mixer.music.load(os.path.join(SND_DIR, 'mordida som.mp3'))
+    pygame.mixer.music.load(os.path.join(SND_DIR, 'mordida-som.wav'))
     pygame.mixer.music.set_volume(0.4)
-    assets[MORDIDA_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'mordida som.mp3'))
+    assets[MORDIDA_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'mordida-som.wav'))
+    
 
     return assets
