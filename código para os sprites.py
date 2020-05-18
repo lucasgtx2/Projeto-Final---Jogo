@@ -11,9 +11,16 @@ class Pinguim(pygame.sprite.Sprite):
     def __init__(self, groups, assets):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
+        
         pinguins = [assets[PINGUIMP_IMG, PINGUIMD_IMG]]
         
-        self.image = pinguins[0]
+        self.images = {
+            PARADO = pinguins[0]
+            DESLIZANDO = pinguins[1]
+        }
+
+        self.state = PARADO
+        self.image = self.images[PARADO]
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH / 2
@@ -24,7 +31,7 @@ class Pinguim(pygame.sprite.Sprite):
         self.assets = assets
 
     def update(self):
-        # Atualização da posição da nave
+        # Atualização da posição do pinguim
         self.rect.x += self.speedx
 
         # Mantem dentro da tela
@@ -33,7 +40,7 @@ class Pinguim(pygame.sprite.Sprite):
         if self.rect.left < 0:
             self.rect.left = 0
 
-class Carne(pygame.sprite.Sprite):
+'''class Carne(pygame.sprite.Sprite):
     def __init__(self, assets):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
@@ -56,4 +63,4 @@ class Carne(pygame.sprite.Sprite):
             self.rect.x = random.randint(0, WIDTH-METEOR_WIDTH)
             self.rect.y = random.randint(-100, -METEOR_HEIGHT)
             self.speedx = random.randint(-3, 3)
-            self.speedy = random.randint(2, 9)
+            self.speedy = random.randint(2, 9)'''
