@@ -2,11 +2,12 @@
 # ----- Importa e inicia pacotes
 import pygame
 import random
+import os
 from config import WIDTH, HEIGHT, INIT, GAME, QUIT, END
-from init import init
-from game screen import game screen
-from end import end
-
+from init import init_screen
+#from game screen import game screen
+#from end import end
+  
 pygame.init()
 pygame.mixer.init()
 

@@ -8,8 +8,8 @@ SND_DIR = path.join(path.dirname(__file__), 'assets', 'sons')
 '''FNT_DIR = path.join(path.dirname(__file__), 'assets', 'fonte')'''
 
 # Dados gerais do jogo.
-WIDTH = 1024 # Largura da tela
-HEIGHT = 768 # Altura da tela
+WIDTH = 800 # Largura da tela
+HEIGHT = 700 # Altura da tela
 FPS = 30 # Frames por segundo
 
 # Define tamanhos

@@ -1,12 +1,13 @@
 #codigo para definicao dos assets
 import pygame
 import os
-from config import IMG_DIR, SND_DIR, FNT_DIR, PINGUIMD_WIDTH, PINGUIMD_HEIGHT, \
+from config import IMG_DIR, SND_DIR,PINGUIMD_WIDTH, PINGUIMD_HEIGHT, \
     PINGUIMP_WIDTH, PINGUIMP_HEIGHT, SALMAOC_WIDTH, SALMAOC_HEIGHT, SALMAOD_WIDTH, \
         SALMAOD_HEIGHT, BOMBA_PEDRA_WIDTH, BOMBA_PEDRA_HEIGHT
   
 
 BACKGROUND = 'background_img'
+INIT_BACKGROUND = 'init_background_img'
 PINGUIMD_IMG = 'pinguim_deitado_img'
 PINGUIMP_IMG = 'pinguim_em_pe_img'
 SALMAOC_IMG = 'salmao_carne_img'
@@ -32,6 +33,8 @@ def load_assets():
     
     #Carrega as imagens:
     assets[BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR, 'fundo neve igloo.jpg')).convert()
+    
+    assets[INIT_BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR, 'init background.jpg')).convert()
 
     assets[PINGUIMD_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pinguim deitado.jpg')).convert_alpha()
     assets[PINGUIMD_IMG] = pygame.transform.scale(assets['pinguim_deitado_img'], (PINGUIMD_WIDTH, PINGUIMD_HEIGHT))

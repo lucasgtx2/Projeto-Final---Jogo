@@ -1,22 +1,25 @@
 #init
 import pygame
 import random
-from os import path
+import os
 
-from config import IMG_DIR, BLACK, FPS, GAME, QUIT 
-from assets import assets[BACKGROUND]
+from config import IMG_DIR, BLACK, FPS, GAME, QUIT, WIDTH, HEIGHT 
+from assets import load_assets
 
 def init_screen(screen):
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
 
 
-    ''' Carrega o fundo da tela inicial
-    background = pygame.image.load(path.join(IMG_DIR, assets[BACKGROUND])).convert()
+    #Carrega o fundo da tela inicial
+    '''background = assets['init_background_img']
     background_rect = background.get_rect()'''
-    
-    running = True
+    background = pygame.image.load(os.path.join(IMG_DIR, 'init background.jpg')).convert_alpha()
+    background = pygame.transform.scale(background, (WIDTH, HEIGHT))
+    background_rect = background.get_rect()
 
+    running = True
+  
     while running:
 
         # Ajusta a velocidade do jogo.
@@ -33,9 +36,10 @@ def init_screen(screen):
             if event.type == pygame.KEYDOWN:
                 keys_down[event.key] = True
                 if event.key == pygame.K_SPACE:
+                    keys_down[event.key] = True
                     state = GAME
-                    return state
+                    running = False
         
-        screen.fill(BLACK)
+        screen.blit(background, background_rect)
 
     return state
