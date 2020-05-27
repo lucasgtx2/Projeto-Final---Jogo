@@ -12,7 +12,7 @@ class Pinguim(pygame.sprite.Sprite):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
         
-        pinguins = [assets[PINGUIMP_IMG, PINGUIMD_IMG]]
+        pinguins = [assets[PINGUIMP_IMG, PINGUIMD_IMG]] 
         
         self.images = {
             PARADO = pinguins[0]
@@ -117,7 +117,7 @@ class Bomba(pygame.sprite.Sprite):
         # Verifica quantos ticks se passaram desde a última queda.
         elapsed_ticks = now - self.ultima_queda
         
-        # Se já pode atirar novamente...
+        # Se já pode cair novamente...
         if elapsed_ticks > self.queda_ticks:
             # Marca o tick da nova imagem.
             self.ultima_queda = now
@@ -125,3 +125,42 @@ class Bomba(pygame.sprite.Sprite):
             nova_bomba = Bomba(self.assets, self.rect.top, self.rect.centerx)
             self.groups['all_sprites'].add(nova_bomba)
             self.assets[EXPLOSAO_SND].play()
+
+class Salmaozao(pygame.sprite.Sprite):
+    def __init__(self, assets):
+        # Construtor da classe mãe (Sprite).
+        pygame.sprite.Sprite.__init__(self)
+        self.image = assets[BOMBA_IMG]
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = self.image.get_rect()
+        self.rect.x = random.randint(0, WIDTH BOMBA_WIDTH)
+        self.rect.y = random.randint(-100, - BOMBA_HEIGHT)
+        self.speedx = random.randint(-3, 3)
+        self.speedy = 10
+
+        # Só será possível cair um salmaozao a cada 40 -- 60s
+        self.ultima_queda = pygame.time.get_ticks()
+        self.queda_ticks = random.randint(40000, 60000)
+    def update(self):
+        # Atualizando a posição dO SALMAOZAO
+        self.rect.x += self.speedx
+        self.rect.y += self.speedy
+
+        # Se a pedra bater na parede, ricocheteia com a velocidade contrária em x
+        if self.rect.right > WIDTH:
+            self.speedx = -self.speedx
+        
+    def queda(self):
+        # Verifica se pode cair
+        now = pygame.time.get_ticks()
+        # Verifica quantos ticks se passaram desde a última queda.
+        elapsed_ticks = now - self.ultima_queda
+        
+        # Se já pode cair novamente...
+        if elapsed_ticks > self.queda_ticks:
+            # Marca o tick da nova imagem.
+            self.ultima_queda = now
+            # A nova bomba vai ser criada no topo da tela
+            novo_salmaozao = Salmaozao(self.assets, self.rect.top, self.rect.centerx)
+            self.groups['all_sprites'].add(novo_salmaozao)
+            self.assets[PODER_SND].play()

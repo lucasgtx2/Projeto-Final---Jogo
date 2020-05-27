@@ -14,7 +14,6 @@ def game_screen(window):
     all_sprites = pygame.sprite.Group()
     all_carnes = pygame.sprite.Group()
     all_pedras = pygame.sprite.Groups()
-    all_bombas = pygame.sprite.Groups()
     groups = {}
     groups['all_sprites'] = all_sprites
     groups['all_carnes'] = all_carnes
@@ -51,4 +50,4 @@ def game_screen(window):
     keys_down = {}
     score = 0
     lives = 3
-    
+     

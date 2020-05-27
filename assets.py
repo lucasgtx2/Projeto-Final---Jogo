@@ -10,8 +10,8 @@ BACKGROUND = 'background_img'
 INIT_BACKGROUND = 'init_background_img'
 PINGUIMD_IMG = 'pinguim_deitado_img'
 PINGUIMP_IMG = 'pinguim_em_pe_img'
-SALMAOC_IMG = 'salmao_carne_img'
-SALMAOD_IMG = 'salmao_desenho_img'
+SALMAOC_IMG = 'salmao_carne_img' 
+SALMAOD_IMG = 'salmao_desenho_img' 
 
 BOMBA_IMG = 'bomba_img'
 PEDRA_IMG = 'pedra_img'
@@ -86,3 +86,4 @@ def load_assets():
     
 
     return assets
+ 
