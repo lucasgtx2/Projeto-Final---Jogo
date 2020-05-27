@@ -73,7 +73,7 @@ class Pedra(pygame.sprite.Sprite):
         self.rect.x = random.randint(0, WIDTH - PEDRA_WIDTH)
         self.rect.y = random.randint(-100, -PEDRA_HEIGHT)
         self.speedx = random.randint(-3, 3)
-        self.speedy = random.randint(7, 15)
+        self.speedy = random.randint(7, 10)
 
     def update(self):
         # Atualizando a posição da pedra
@@ -90,3 +90,38 @@ class Pedra(pygame.sprite.Sprite):
             self.rect.x = random.randint(0, WIDTH - PEDRA_WIDTH)
             self.rect.y = random.randint(-100, -PEDRA_HEIGHT)
             self.speedy = random.randint(7, 15)
+
+class Bomba(pygame.sprite.Sprite):
+    def __init__(self, assets):
+        # Construtor da classe mãe (Sprite).
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = assets[BOMBA_IMG]
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = self.image.get_rect()
+        self.rect.x = random.randint(0, WIDTH BOMBA_WIDTH)
+        self.rect.y = random.randint(-100, - BOMBA_HEIGHT)
+        self.speedy = 10
+
+        # Só será possível cair uma bomba entre 20 e 30s
+        self.ultima_queda = pygame.time.get_ticks()
+        self.queda_ticks = random.randint(20000, 30000)
+
+    def update(self):
+            # Atualizando a posição da bomba
+            self.rect.y += self.speedy
+
+    def queda(self):
+        # Verifica se pode cair
+        now = pygame.time.get_ticks()
+        # Verifica quantos ticks se passaram desde a última queda.
+        elapsed_ticks = now - self.ultima_queda
+        
+        # Se já pode atirar novamente...
+        if elapsed_ticks > self.queda_ticks:
+            # Marca o tick da nova imagem.
+            self.ultima_queda = now
+            # A nova bomba vai ser criada no topo da tela
+            nova_bomba = Bomba(self.assets, self.rect.top, self.rect.centerx)
+            self.groups['all_sprites'].add(nova_bomba)
+            self.assets[EXPLOSAO_SND].play()
