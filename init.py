@@ -5,7 +5,7 @@ import os
 
 from config import IMG_DIR, BLACK, FPS, GAME, QUIT, WIDTH, HEIGHT 
 from assets import *
-
+  
 def init_screen(screen):
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()

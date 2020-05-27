@@ -19,7 +19,6 @@ def game_screen(window):
     groups['all_sprites'] = all_sprites
     groups['all_carnes'] = all_carnes
     groups['all_pedras'] = all_pedras
-    groups['all_bombas'] = all_bombas
 
     # Criando o jogador
     player = Pinguim(groups, assets)
@@ -31,7 +30,7 @@ def game_screen(window):
         all_carnes.add(carne)
 
     #Criando salmão inteiro:
-    salmao_inteiro = Salmao_inteiro(groups, assets)
+    salmao_inteiro = Salmaozao(groups, assets)
     all_sprites.add(salmao_inteiro)
 
     #Criando pedras:
@@ -42,7 +41,6 @@ def game_screen(window):
 
     #Criando bomba:
     bomba = Bomba(groups, assets)
-    all_bombas.add(bomba)
     all_sprites.add(bomba)
     
     DONE = 0
@@ -53,3 +51,4 @@ def game_screen(window):
     keys_down = {}
     score = 0
     lives = 3
+    
