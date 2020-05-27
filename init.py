@@ -4,12 +4,16 @@ import random
 import os
 
 from config import IMG_DIR, BLACK, FPS, GAME, QUIT, WIDTH, HEIGHT 
-from assets import *
-  
+from assets import *      
+
+assets = load_assets()
+
+'''text = assets[INIT_FONT].render('Pinguim faminto', True, (0, 0, 0))
+text_rect = text.get_rect()'''
+
 def init_screen(screen):
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
-    assets = load_assets()
     
     #Carrega o fundo da tela inicial
     background = assets[INIT_BACKGROUND]
@@ -29,7 +33,7 @@ def init_screen(screen):
             if event.type == pygame.QUIT:
                 state = QUIT
                 running = False
-            
+
             # Passa para o jogo quando o jogador apertar "espaço"
             if event.type == pygame.KEYDOWN:
                 keys_down[event.key] = True
@@ -39,6 +43,7 @@ def init_screen(screen):
                     running = False
         
         screen.blit(background, background_rect)
+        window.blit(text_rect, (10, 10))
 
         #Atualiza o background
         pygame.display.flip()

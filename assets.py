@@ -23,9 +23,7 @@ MUSICA_INICIAL_SND = 'musica_inicial_snd'
 PODER_SND = 'poder_snd'
 MORDIDA_SND = 'mordida_snd'
 
-'''#ainda nao definimos o score
-SCORE_FONT = 'score_font'
-'''
+INIT_FONT = 'init_font'
 
 
 def load_assets():
@@ -53,6 +51,8 @@ def load_assets():
 
     assets[PEDRA_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pedra desenho.jpg')).convert_alpha()
     assets[PEDRA_IMG] = pygame.transform.scale(assets['pedra_img'], (SALMAOD_WIDTH, SALMAOD_HEIGHT))
+
+    assets[INIT_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'Arial.ttf'), 28)
     
     
     #Carrega os sons:

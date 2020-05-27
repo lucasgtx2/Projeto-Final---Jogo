@@ -14,8 +14,6 @@ pygame.mixer.init()
 # ----- Gera tela principal
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Pinguim Faminto')
-'''font = pygame.font.SysFont(None, 48)
-text = font.render('Penguim faminto', True, (0, 0, 0))'''
 
 state = INIT
 while state != QUIT:
@@ -27,5 +25,5 @@ while state != QUIT:
         state = end_screen(window)
     else:
         state = QUIT
-# ===== Finalização =====
+# ===== Finalização =====  
 pygame.quit()  # Função do PyGame que finaliza os recursos utilizados 
