@@ -12,12 +12,13 @@ class Pinguim(pygame.sprite.Sprite):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
         
-        pinguins = [assets[PINGUIMP_IMG], assets[PINGUIMD_IMG]] 
+        pinguins = [assets[PINGUIMP_IMG], assets[PINGUIMD_IMG]] #add imagens pngm poderoso
         
         self.images = {
             'PARADO': pinguins[0],
             'DESLIZANDO': pinguins[1]
-        }
+        }  #colocar os estados quando pinguim estiver poderoso
+    
 
         self.state = 'PARADO'
         self.image = self.images['PARADO']
@@ -39,6 +40,8 @@ class Pinguim(pygame.sprite.Sprite):
             self.rect.right = WIDTH
         if self.rect.left < 0:
             self.rect.left = 0
+    #ATUALIZAR PINGUIM PODEROSO
+    #        
 
 class Carne(pygame.sprite.Sprite):
     def __init__(self, assets):
@@ -97,7 +100,6 @@ class Bomba(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         self.image = assets[BOMBA_IMG]
-        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(0, WIDTH - BOMBA_PEDRA_WIDTH)
         self.rect.y = random.randint(-100, - BOMBA_PEDRA_HEIGHT)

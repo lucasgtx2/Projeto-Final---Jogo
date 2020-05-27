@@ -36,7 +36,4 @@ YELLOW = (255, 255, 0)
 INIT = 0
 GAME = 1
 QUIT = 2
-END = 3
-
-
-  
+END = 3  

@@ -126,6 +126,8 @@ def game_screen(window):
                 player.kill()
                 lives = 0
                 state = END
+
+        #FAZER HITS PINGUIM PODEROSO COM SALMAOZAO
         
         # ----- Gera saídas
         window.fill(BLACK)  # Preenche com a cor preto
