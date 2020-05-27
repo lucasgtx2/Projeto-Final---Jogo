@@ -2,7 +2,8 @@
 import pygame
 from config import FPS, WIDTH, HEIGHT, BLACK, YELLOW, RED, END, QUIT
 from assets import load_assets
-from código para os sprites import Pinguim, Carne, Salmao_inteiro, Pedra, Bomba
+from codigo_para_os_sprites import Pinguim, Carne, Salmaozao, Pedra, Bomba
+
 
 def game_screen(window):
     # Variável para o ajuste de velocidade
@@ -13,7 +14,7 @@ def game_screen(window):
     #Criando grupos com os sprites:
     all_sprites = pygame.sprite.Group()
     all_carnes = pygame.sprite.Group()
-    all_pedras = pygame.sprite.Groups()
+    all_pedras = pygame.sprite.Group()
     groups = {}
     groups['all_sprites'] = all_sprites
     groups['all_carnes'] = all_carnes
@@ -41,10 +42,10 @@ def game_screen(window):
     #Criando bomba:
     bomba = Bomba(groups, assets)
     all_sprites.add(bomba)
-    
+
     DONE = 0
     PLAYING = 1
-    DYING = 2
+    DEAD = 2
     state = PLAYING
 
     keys_down = {}
@@ -67,7 +68,7 @@ def game_screen(window):
             if state == PLAYING:
                 # Verifica se apertou alguma tecla.
                 if event.type == pygame.KEYDOWN:
-                    Pinguim.state = DESLIZANDO
+                    Pinguim.state = 'DESLIZANDO'
                     # Dependendo da tecla, altera a velocidade.
                     keys_down[event.key] = True
                     if event.key == pygame.K_LEFT:
@@ -76,7 +77,7 @@ def game_screen(window):
                         player.speedx += 20
                 # Verifica se soltou alguma tecla.
                 if event.type == pygame.KEYUP:
-                    Pinguim.state = PARADO
+                    Pinguim.state = 'PARADO'
                     # Dependendo da tecla, altera a velocidade.
                     if event.key in keys_down and keys_down[event.key]:
                         if event.key == pygame.K_LEFT:
@@ -118,10 +119,33 @@ def game_screen(window):
                 
             # Verifica se houve colisão entre pinguim e bomba
             hits = pygame.sprite.spritecollide(player, bomba, True, pygame.sprite.collide_mask)
-            for bomba in hits:
+            if len(hits) > 0:
                 assets[EXPLOSAO_SND].play()
                 b = Bomba(assets)
                 all_sprites.add(b)
                 player.kill()
                 lives = 0
                 state = END
+        
+        # ----- Gera saídas
+        window.fill(BLACK)  # Preenche com a cor preto
+        window.blit(assets[BACKGROUND], (0, 0))
+        
+        # Desenhando todos os sprites
+        all_sprites.draw(window)
+
+        # Desenhando o score
+        text_surface = assets[INIT_FONT].render("{:08d}".format(score), True, YELLOW)
+        text_rect = text_surface.get_rect()
+        text_rect.midtop = (WIDTH / 2,  10)
+        window.blit(text_surface, text_rect)
+
+        # Desenhando as vidas
+        text_surface = assets[INIT_FONT].render(chr(9829) * lives, True, RED)
+        text_rect = text_surface.get_rect()
+        text_rect.bottomleft = (10, HEIGHT - 10)
+        window.blit(text_surface, text_rect)
+
+        pygame.display.update()  # Mostra o novo frame para o jogador
+
+        return state

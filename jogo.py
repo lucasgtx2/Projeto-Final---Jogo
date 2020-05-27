@@ -5,7 +5,8 @@ import random
 import os
 from config import WIDTH, HEIGHT, INIT, GAME, QUIT, END
 from init import init_screen
-#from game screen import game screen
+from pinguim_game_screen import game_screen
+from codigo_para_os_sprites import *
 #from end import end
 
 pygame.init()

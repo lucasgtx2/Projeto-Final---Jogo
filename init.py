@@ -24,7 +24,9 @@ def init_screen(screen):
     background_rect = background.get_rect()
 
     running = True
-  
+    
+    keys_down = {}
+
     while running:
 
         # Ajusta a velocidade do jogo.

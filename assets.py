@@ -47,12 +47,12 @@ def load_assets():
     assets[SALMAOD_IMG] = pygame.transform.scale(assets['salmao_desenho_img'], (SALMAOD_WIDTH, SALMAOD_HEIGHT))
 
     assets[BOMBA_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'bomba desenho.jpg')).convert_alpha()
-    assets[BOMBA_IMG] = pygame.transform.scale(assets['bomba_img'], (SALMAOD_WIDTH, SALMAOD_HEIGHT))
+    assets[BOMBA_IMG] = pygame.transform.scale(assets['bomba_img'], (BOMBA_PEDRA_WIDTH, BOMBA_PEDRA_HEIGHT))
 
     assets[PEDRA_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pedra desenho.jpg')).convert_alpha()
-    assets[PEDRA_IMG] = pygame.transform.scale(assets['pedra_img'], (SALMAOD_WIDTH, SALMAOD_HEIGHT))
+    assets[PEDRA_IMG] = pygame.transform.scale(assets['pedra_img'], (BOMBA_PEDRA_WIDTH, BOMBA_PEDRA_HEIGHT))
 
-    assets[INIT_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'Arial.ttf'), 28)
+    assets[INIT_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'Arial.ttf'), 60)
     
     
     #Carrega os sons:

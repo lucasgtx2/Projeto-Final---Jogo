@@ -3,7 +3,7 @@ import random
 import pygame
 from config import IMG_DIR, SND_DIR,PINGUIMD_WIDTH, PINGUIMD_HEIGHT, \
     PINGUIMP_WIDTH, PINGUIMP_HEIGHT, SALMAOC_WIDTH, SALMAOC_HEIGHT, SALMAOD_WIDTH, \
-        SALMAOD_HEIGHT, BOMBA_PEDRA_WIDTH, BOMBA_PEDRA_HEIGHT
+        SALMAOD_HEIGHT, BOMBA_PEDRA_WIDTH, BOMBA_PEDRA_HEIGHT, WIDTH, HEIGHT
 from assets import *
   
 #Classe do Pinguim
@@ -12,15 +12,15 @@ class Pinguim(pygame.sprite.Sprite):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
         
-        pinguins = [assets[PINGUIMP_IMG, PINGUIMD_IMG]] 
+        pinguins = [assets[PINGUIMP_IMG], assets[PINGUIMD_IMG]] 
         
         self.images = {
-            PARADO = pinguins[0]
-            DESLIZANDO = pinguins[1]
+            'PARADO': pinguins[0],
+            'DESLIZANDO': pinguins[1]
         }
 
-        self.state = PARADO
-        self.image = self.images[PARADO]
+        self.state = 'PARADO'
+        self.image = self.images['PARADO']
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH / 2
@@ -63,15 +63,15 @@ class Carne(pygame.sprite.Sprite):
             self.speedy = random.randint(2, 9)
 
 class Pedra(pygame.sprite.Sprite):
-    def __init__(self, assets):
+    def __init__(self, groups, assets):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
 
         self.image = assets[PEDRA_IMG]
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
-        self.rect.x = random.randint(0, WIDTH - PEDRA_WIDTH)
-        self.rect.y = random.randint(-100, -PEDRA_HEIGHT)
+        self.rect.x = random.randint(0, WIDTH - BOMBA_PEDRA_WIDTH)
+        self.rect.y = random.randint(-100, -BOMBA_PEDRA_HEIGHT)
         self.speedx = random.randint(-3, 3)
         self.speedy = random.randint(7, 10)
 
@@ -87,20 +87,20 @@ class Pedra(pygame.sprite.Sprite):
         # Se a carne passar do final da tela, volta para cima e sorteia
         # novas posições e velocidades
         if self.rect.top > HEIGHT or self.rect.right < 0 or self.rect.left > WIDTH:
-            self.rect.x = random.randint(0, WIDTH - PEDRA_WIDTH)
-            self.rect.y = random.randint(-100, -PEDRA_HEIGHT)
+            self.rect.x = random.randint(0, WIDTH - BOMBA_PEDRA_WIDTH)
+            self.rect.y = random.randint(-100, - BOMBA_PEDRA_HEIGHT)
             self.speedy = random.randint(7, 15)
 
 class Bomba(pygame.sprite.Sprite):
-    def __init__(self, assets):
+    def __init__(self, groups,  assets):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
 
         self.image = assets[BOMBA_IMG]
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
-        self.rect.x = random.randint(0, WIDTH BOMBA_WIDTH)
-        self.rect.y = random.randint(-100, - BOMBA_HEIGHT)
+        self.rect.x = random.randint(0, WIDTH - BOMBA_PEDRA_WIDTH)
+        self.rect.y = random.randint(-100, - BOMBA_PEDRA_HEIGHT)
         self.speedy = 10
 
         # Só será possível cair uma bomba entre 20 e 30s
@@ -126,14 +126,14 @@ class Bomba(pygame.sprite.Sprite):
             self.assets[EXPLOSAO_SND].play()
 
 class Salmaozao(pygame.sprite.Sprite):
-    def __init__(self, assets):
+    def __init__(self, groups,  assets):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
         self.image = assets[BOMBA_IMG]
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
-        self.rect.x = random.randint(0, WIDTH BOMBA_WIDTH)
-        self.rect.y = random.randint(-100, - BOMBA_HEIGHT)
+        self.rect.x = random.randint(0, WIDTH - SALMAOD_WIDTH)
+        self.rect.y = random.randint(-100, -  SALMAOD_HEIGHT)
         self.speedx = random.randint(-3, 3)
         self.speedy = 10
 
