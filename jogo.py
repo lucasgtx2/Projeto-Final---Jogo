@@ -18,7 +18,7 @@ pygame.display.set_caption('Pinguim Faminto')
 state = INIT
 while state != QUIT:
     if state == INIT:
-        state = init_screen(screen)
+        state = init_screen(window)
     elif state == GAME:
         state = game_screen(window)
     elif state == END:

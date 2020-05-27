@@ -44,10 +44,84 @@ def game_screen(window):
     
     DONE = 0
     PLAYING = 1
-    EXPLODING = 2
+    DYING = 2
     state = PLAYING
 
     keys_down = {}
     score = 0
     lives = 3
-     
+      
+    # ===== Loop principal =====
+    pygame.mixer.music.play(loops=-1)
+    while state != DONE or state != END:
+        clock.tick(FPS)
+
+        # ----- Trata eventos
+        for event in pygame.event.get():
+            # ----- Verifica consequências
+            if event.type == pygame.QUIT:
+                state = DONE
+                return QUIT
+            
+            # Só verifica o teclado se está no estado de jogo
+            if state == PLAYING:
+                # Verifica se apertou alguma tecla.
+                if event.type == pygame.KEYDOWN:
+                    Pinguim.state = DESLIZANDO
+                    # Dependendo da tecla, altera a velocidade.
+                    keys_down[event.key] = True
+                    if event.key == pygame.K_LEFT:
+                        player.speedx -= 20
+                    if event.key == pygame.K_RIGHT:
+                        player.speedx += 20
+                # Verifica se soltou alguma tecla.
+                if event.type == pygame.KEYUP:
+                    Pinguim.state = PARADO
+                    # Dependendo da tecla, altera a velocidade.
+                    if event.key in keys_down and keys_down[event.key]:
+                        if event.key == pygame.K_LEFT:
+                            player.speedx += 8
+                        if event.key == pygame.K_RIGHT:
+                            player.speedx -= 8
+                
+        # ----- Atualiza estado do jogo
+        # Atualizando a posição dos obstaculos
+        all_sprites.update()
+
+        if state == PLAYING:
+            # Verifica se o pinguim comeu pedaço de carne
+            hits = pygame.sprite.groupcollide(all_carnes, player, True, True, pygame.sprite.collide_mask)
+            for carne in hits: # As chaves são os elementos do primeiro grupo (salmao) que colidiram com o penguim
+                # O salmao e destruido e precisa ser recriado
+                assets[MORDIDA_SND].play()
+                s = Carne(assets)
+                all_sprites.add(s)
+                all_carnes.add(s)
+            
+
+                # Ganhou pontos!
+                score += 100
+                if score % 1000 == 0:
+                    lives += 1
+
+            # Verifica se houve colisão entre pinguim e pedra
+            hits = pygame.sprite.spritecollide(player, all_pedras, True, pygame.sprite.collide_mask)
+            for pedra in hits:
+                # O salmao e destruido e precisa ser recriado
+                assets[PEDRA_SND].play()
+                p = Pedra(assets)
+                all_sprites.add(p)
+                all_carnes.add(p)
+
+                # Perdeu uma vida!
+                lives -= 1
+                
+            # Verifica se houve colisão entre pinguim e bomba
+            hits = pygame.sprite.spritecollide(player, bomba, True, pygame.sprite.collide_mask)
+            for bomba in hits:
+                assets[EXPLOSAO_SND].play()
+                b = Bomba(assets)
+                all_sprites.add(b)
+                player.kill()
+                lives = 0
+                state = END
