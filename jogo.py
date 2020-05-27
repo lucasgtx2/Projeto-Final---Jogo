@@ -7,7 +7,7 @@ from config import WIDTH, HEIGHT, INIT, GAME, QUIT, END
 from init import init_screen
 #from game screen import game screen
 #from end import end
-    
+
 pygame.init()
 pygame.mixer.init()
 
@@ -18,7 +18,7 @@ pygame.display.set_caption('Pinguim Faminto')
 state = INIT
 while state != QUIT:
     if state == INIT:
-        state = init_screen(window)
+        state = init_screen(screen)
     elif state == GAME:
         state = game_screen(window)
     elif state == END:

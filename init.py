@@ -6,12 +6,15 @@ import os
 from config import IMG_DIR, BLACK, FPS, GAME, QUIT, WIDTH, HEIGHT 
 from assets import *      
 
-assets = load_assets()
-
-'''text = assets[INIT_FONT].render('Pinguim faminto', True, (0, 0, 0))
-text_rect = text.get_rect()'''
 
 def init_screen(screen):
+    assets = load_assets()
+
+    text = assets[INIT_FONT].render('Pinguim faminto', True, (0, 0, 0))
+    text_rect = text.get_rect()
+    text_rect.x = 400
+    text_rect.y = 100
+
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
     
@@ -43,9 +46,10 @@ def init_screen(screen):
                     running = False
         
         screen.blit(background, background_rect)
-        window.blit(text_rect, (10, 10))
+        screen.blit(text, text_rect)
 
         #Atualiza o background
         pygame.display.flip()
 
     return state
+       

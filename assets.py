@@ -1,7 +1,7 @@
 #codigo para definicao dos assets
 import pygame
 import os
-from config import IMG_DIR, SND_DIR,PINGUIMD_WIDTH, PINGUIMD_HEIGHT, \
+from config import IMG_DIR, SND_DIR, FNT_DIR, PINGUIMD_WIDTH, PINGUIMD_HEIGHT, \
     PINGUIMP_WIDTH, PINGUIMP_HEIGHT, SALMAOC_WIDTH, SALMAOC_HEIGHT, SALMAOD_WIDTH, \
         SALMAOD_HEIGHT, BOMBA_PEDRA_WIDTH, BOMBA_PEDRA_HEIGHT
     
@@ -25,7 +25,7 @@ MORDIDA_SND = 'mordida_snd'
 
 INIT_FONT = 'init_font'
 
-
+ 
 def load_assets():
     assets = {}
     

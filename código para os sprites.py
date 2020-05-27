@@ -108,10 +108,9 @@ class Bomba(pygame.sprite.Sprite):
         self.queda_ticks = random.randint(20000, 30000)
 
     def update(self):
-            # Atualizando a posição da bomba
-            self.rect.y += self.speedy
+        # Atualizando a posição da bomba
+        self.rect.y += self.speedy
 
-    def queda(self):
         # Verifica se pode cair
         now = pygame.time.get_ticks()
         # Verifica quantos ticks se passaram desde a última queda.
@@ -149,7 +148,7 @@ class Salmaozao(pygame.sprite.Sprite):
         # Se a pedra bater na parede, ricocheteia com a velocidade contrária em x
         if self.rect.right > WIDTH:
             self.speedx = -self.speedx
-        
+         
     def queda(self):
         # Verifica se pode cair
         now = pygame.time.get_ticks()
