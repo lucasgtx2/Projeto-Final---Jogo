@@ -8,20 +8,20 @@ from assets import *
 
 #Classe do Pinguim
 class Pinguim(pygame.sprite.Sprite):
-    def __init__(self, groups, assets):
+    def __init__(self, assets):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
         
         pinguins = [assets[PINGUIMP_IMG], assets[PINGUIMP_FLIP_IMG], assets[PINGUIMD_IMG], assets[PINGUIMD_FLIP_IMG], \
-            assets[PINGUIMPP_IMG], assets[PINGUIMPP_FLIP_IMG], assets[PINGUIMPD_IMG], assets[PINGUIMPD_FLIP_IMG], \
-                assets[PINGUIMGORDOP_IMG], assets[PINGUIMGORDOP_FLIP_IMG], assets[PINGUIMGORDOD_IMG], assets[PINGUIMGORDOD_FLIP_IMG]]
+            assets[PINGUIMPP_IMG], assets[PINGUIMPP_FLIP_IMG], assets[PINGUIMPD_IMG], assets[PINGUIMPD_FLIP_IMG]]
+                #assets[PINGUIMGORDOP_IMG], assets[PINGUIMGORDOP_FLIP_IMG], assets[PINGUIMGORDOD_IMG], assets[PINGUIMGORDOD_FLIP_IMG]]
 
         self.images = {
             'NORMAL': {
                 'PARADO': {
                     'ESQUERDA': pinguins[0],
                     'DIREITA': pinguins[1]
-                }
+                },
                 'DESLIZANDO': {
                     'ESQUERDA': pinguins[2],
                     'DIREITA': pinguins[3]
@@ -31,20 +31,10 @@ class Pinguim(pygame.sprite.Sprite):
                 'PARADO': { 
                     'ESQUERDA': pinguins[4],
                     'DIREITA': pinguins[5]
-                }
+                },
                 'DESLIZANDO': {
                     'ESQUERDA': pinguins[6],
                     'DIREITA': pinguins[7]
-                }
-            },
-            'GORDO':{
-                'PARADO': {
-                    'ESQUERDA': pinguins[8],
-                    'DIREITA': pinguins[9]
-                }
-                'DESLIZANDO': {
-                    'ESQUERDA': pinguins[10],
-                    'DIREITA': pinguins[11]
                 }
             }
         }
@@ -59,8 +49,10 @@ class Pinguim(pygame.sprite.Sprite):
         self.rect.bottom = HEIGHT - PINGUIMP_HEIGHT
 
         self.speedx = 0
-        self.groups = groups
         self.assets = assets
+
+        self.ultimo_poder = pygame.time.get_ticks()
+        self.poder_ticks = random.randint(20000, 30000)
 
     def update(self):
         # Atualização da posição do pinguim
@@ -70,27 +62,14 @@ class Pinguim(pygame.sprite.Sprite):
         if self.rect.right > WIDTH:
             self.rect.right = WIDTH
         if self.rect.left < 0:
-            self.rect.left = 0
+            self.rect.left = 0  
+
+        now = pygame.time.get_ticks()
+        elapsed_ticks = now - self.ultimo_poder
         
-        # Atualiza estado 1:
-        if self.state1 == 'NORMAL':
-            self.state1 == 'NORMAL'
-        if self.state1 == 'PODEROSO':
-            self.state1 == 'PODEROSO'
-        if self.state1 == 'GORDO':
-            self.state1 == 'GORDO'
-
-        # Atualiza estado 2 (de movimento):
-        if self.state2 == 'PARADO':
-            self.state2 == 'PARADO'
-        if self.state2 == 'DESLIZANDO':
-            self.state2 == 'DESLIZANDO'  
-
-        # Atualiza estado 3 (esquerda ou direita):
-        if self.state3 == 'ESQUERDA':
-            self.state3 == 'ESQUERDA'
-        if self.state3 == 'DIREITA':
-            self.state3 == 'DIREITA'        
+        # Se já acabou o tempo do poder:
+        if elapsed_ticks > self.poder_ticks:
+           self.state1 = 'NORMAL'    
 
 class Carne(pygame.sprite.Sprite):
     def __init__(self, assets):
@@ -172,7 +151,7 @@ class Bomba(pygame.sprite.Sprite):
             # Marca o tick da nova imagem.
             self.ultima_queda = now
             # A nova bomba vai ser criada no topo da tela
-            nova_bomba = Bomba(self.assets, self.rect.top, self.rect.centerx)
+            nova_bomba = Bomba(self.assets)
             self.groups['all_sprites'].add(nova_bomba)
             self.assets[EXPLOSAO_SND].play()
 

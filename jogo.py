@@ -16,6 +16,7 @@ pygame.mixer.init()
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Pinguim Faminto')
 
+# loop principal do jogo:
 state = INIT
 while state != QUIT:
     if state == INIT:
@@ -26,5 +27,6 @@ while state != QUIT:
         state = end_screen(window)
     else:
         state = QUIT
+
 # ===== Finalização =====  
 pygame.quit()  # Função do PyGame que finaliza os recursos utilizados   
