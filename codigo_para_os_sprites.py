@@ -14,20 +14,27 @@ class Pinguim(pygame.sprite.Sprite):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
         
-        pinguins = [assets[PINGUIMP_IMG], assets[PINGUIMD_IMG], assets[PINGUIMPP], \
-            assets[PINGUIMPD], assets[PINGUIMGORDOP], assets[PINGUIMGORDOD]]
-        
+        pinguins = [assets[PINGUIMP_IMG], assets[PINGUIMD_IMG], assets[PINGUIMPP_IMG], \
+            assets[PINGUIMPD_IMG], assets[PINGUIMGORDOP_IMG], assets[PINGUIMGORDOD_IMG]]
+
         self.images = {
-            'PARADO': pinguins[0],
-            'DESLIZANDO': pinguins[1],
-            'PODEROSO EM PE': pinguins[2],
-            'PODEROSO DEITADO': pinguins[3],
-            'GORDO EM PE': pinguins[4],
-            'GORDO DEITADO': pinguins[5]
-        }  
-    
-        self.state = 'PARADO'
-        self.image = self.images['PARADO']
+            'NORMAL': {
+                'PARADO': pinguins[0],
+                'DESLIZANDO': pinguins[1]
+            },
+            'PODEROSO':{
+                'PARADO': pinguins[2],
+                'DESLIZANDO': pinguins[3]
+            },
+            'GORDO':{
+                'PARADO': pinguins[4],
+                'DESLIZANDO': pinguins[5]
+            }
+        }
+
+        self.state1 = 'NORMAL'
+        self.state2 = 'PARADO'
+        self.image = self.images['NORMAL'['PARADO']]
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH / 2
@@ -41,13 +48,25 @@ class Pinguim(pygame.sprite.Sprite):
         # Atualização da posição do pinguim
         self.rect.x += self.speedx
 
-        # Mantem dentro da tela
+        # Mantem dentro da tela:
         if self.rect.right > WIDTH:
             self.rect.right = WIDTH
         if self.rect.left < 0:
             self.rect.left = 0
-    #ATUALIZAR PINGUIM PODEROSO
-    #        
+        
+        # Atualiza estado 1:
+        if self.state1 == 'NORMAL':
+            self.state1 == 'NORMAL'
+        if self.state1 == 'PODEROSO':
+            self.state1 == 'PODEROSO'
+        if self.state1 == 'GORDO':
+            self.state1 == 'GORDO'
+
+        # Atualiza estado 2 (de movimento):
+        if self.state2 == 'PARADO':
+            self.state2 == 'PARADO'
+        if self.state2 == 'DESLIZANDO':
+            self.state2 == 'DESLIZANDO'        
 
 class Carne(pygame.sprite.Sprite):
     def __init__(self, assets):
@@ -167,7 +186,7 @@ class Salmaozao(pygame.sprite.Sprite):
         if elapsed_ticks > self.queda_ticks:
             # Marca o tick da nova imagem.
             self.ultima_queda = now
-            # A nova bomba vai ser criada no topo da tela
+            # O novo salmaozao vai ser criado no topo da tela
             novo_salmaozao = Salmaozao(self.assets, self.rect.top, self.rect.centerx)
             self.groups['all_sprites'].add(novo_salmaozao)
             self.assets[PODER_SND].play()

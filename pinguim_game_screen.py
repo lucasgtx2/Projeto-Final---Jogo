@@ -68,7 +68,7 @@ def game_screen(window):
             if state == PLAYING:
                 # Verifica se apertou alguma tecla.
                 if event.type == pygame.KEYDOWN:
-                    Pinguim.state = 'DESLIZANDO'
+                    Pinguim.state2 = 'DESLIZANDO'
                     # Dependendo da tecla, altera a velocidade.
                     keys_down[event.key] = True
                     if event.key == pygame.K_LEFT:
@@ -77,7 +77,7 @@ def game_screen(window):
                         player.speedx += 20
                 # Verifica se soltou alguma tecla.
                 if event.type == pygame.KEYUP:
-                    Pinguim.state = 'PARADO'
+                    Pinguim.state2 = 'PARADO'
                     # Dependendo da tecla, altera a velocidade.
                     if event.key in keys_down and keys_down[event.key]:
                         if event.key == pygame.K_LEFT:
@@ -127,8 +127,14 @@ def game_screen(window):
                 lives = 0
                 state = END
 
-        #FAZER HITS PINGUIM PODEROSO COM SALMAOZAO
-        
+        # HITS PINGUIM PODEROSO COM SALMAOZAO
+            hits = pygame.sprite.spritecollide(player, salmao_inteiro, True, pygame.sprite.collide_mask)
+            if len(hits) == 1:
+                assets[PODER_SND].play()
+                salmao_inteiro = Salmaozao(assets)
+                all_sprites.add(salmao_inteiro)
+                Pinguim.state1 = 'PODEROSO'
+
         # ----- Gera saídas
         window.fill(BLACK)  # Preenche com a cor preto
         window.blit(assets[BACKGROUND], (0, 0))
@@ -151,4 +157,4 @@ def game_screen(window):
         pygame.display.update()  # Mostra o novo frame para o jogador
 
         return state
-        
+                                                
