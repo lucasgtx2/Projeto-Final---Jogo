@@ -5,21 +5,27 @@ from config import IMG_DIR, SND_DIR,PINGUIMD_WIDTH, PINGUIMD_HEIGHT, \
     PINGUIMP_WIDTH, PINGUIMP_HEIGHT, SALMAOC_WIDTH, SALMAOC_HEIGHT, SALMAOD_WIDTH, \
         SALMAOD_HEIGHT, BOMBA_PEDRA_WIDTH, BOMBA_PEDRA_HEIGHT, WIDTH, HEIGHT
 from assets import *
-   
+
+
+
 #Classe do Pinguim
 class Pinguim(pygame.sprite.Sprite):
     def __init__(self, groups, assets):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
         
-        pinguins = [assets[PINGUIMP_IMG], assets[PINGUIMD_IMG]] #add imagens pngm poderoso
+        pinguins = [assets[PINGUIMP_IMG], assets[PINGUIMD_IMG], assets[PINGUIMPP], \
+            assets[PINGUIMPD], assets[PINGUIMGORDOP], assets[PINGUIMGORDOD]]
         
         self.images = {
             'PARADO': pinguins[0],
-            'DESLIZANDO': pinguins[1]
-        }  #colocar os estados quando pinguim estiver poderoso
+            'DESLIZANDO': pinguins[1],
+            'PODEROSO EM PE': pinguins[2],
+            'PODEROSO DEITADO': pinguins[3],
+            'GORDO EM PE': pinguins[4],
+            'GORDO DEITADO': pinguins[5]
+        }  
     
-
         self.state = 'PARADO'
         self.image = self.images['PARADO']
         self.mask = pygame.mask.from_surface(self.image)
@@ -165,4 +171,3 @@ class Salmaozao(pygame.sprite.Sprite):
             novo_salmaozao = Salmaozao(self.assets, self.rect.top, self.rect.centerx)
             self.groups['all_sprites'].add(novo_salmaozao)
             self.assets[PODER_SND].play()
-            
