@@ -5,7 +5,7 @@ from config import IMG_DIR, SND_DIR,PINGUIMD_WIDTH, PINGUIMD_HEIGHT, \
     PINGUIMP_WIDTH, PINGUIMP_HEIGHT, SALMAOC_WIDTH, SALMAOC_HEIGHT, SALMAOD_WIDTH, \
         SALMAOD_HEIGHT, BOMBA_PEDRA_WIDTH, BOMBA_PEDRA_HEIGHT, WIDTH, HEIGHT
 from assets import *
-  
+   
 #Classe do Pinguim
 class Pinguim(pygame.sprite.Sprite):
     def __init__(self, groups, assets):
@@ -165,3 +165,4 @@ class Salmaozao(pygame.sprite.Sprite):
             novo_salmaozao = Salmaozao(self.assets, self.rect.top, self.rect.centerx)
             self.groups['all_sprites'].add(novo_salmaozao)
             self.assets[PODER_SND].play()
+            

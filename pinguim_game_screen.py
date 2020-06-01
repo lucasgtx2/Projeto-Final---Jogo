@@ -151,3 +151,4 @@ def game_screen(window):
         pygame.display.update()  # Mostra o novo frame para o jogador
 
         return state
+        
