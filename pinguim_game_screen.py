@@ -1,7 +1,7 @@
 #game screen
 import pygame
 from config import FPS, WIDTH, HEIGHT, BLACK, YELLOW, RED, END, QUIT
-from assets import load_assets
+from assets import *
 from codigo_para_os_sprites import Pinguim, Carne, Salmaozao, Pedra, Bomba
 
 
