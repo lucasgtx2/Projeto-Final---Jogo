@@ -6,7 +6,7 @@ IMG_DIR = path.join(path.dirname(__file__), 'assets', 'imagens')
 
 SND_DIR = path.join(path.dirname(__file__), 'assets', 'sons')
 FNT_DIR = path.join(path.dirname(__file__), 'assets', 'fontes')
-  
+   
 # Dados gerais do jogo.
 WIDTH = 800 # Largura da tela
 HEIGHT = 700 # Altura da tela
@@ -36,4 +36,4 @@ YELLOW = (255, 255, 0)
 INIT = 0
 GAME = 1
 QUIT = 2
-END = 3  
+END = 3    

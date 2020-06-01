@@ -1,2 +1,0 @@
-#código para os sprites
- 

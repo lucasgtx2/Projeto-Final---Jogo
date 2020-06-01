@@ -6,35 +6,53 @@ from config import IMG_DIR, SND_DIR,PINGUIMD_WIDTH, PINGUIMD_HEIGHT, \
         SALMAOD_HEIGHT, BOMBA_PEDRA_WIDTH, BOMBA_PEDRA_HEIGHT, WIDTH, HEIGHT
 from assets import *
 
-
-
 #Classe do Pinguim
 class Pinguim(pygame.sprite.Sprite):
     def __init__(self, groups, assets):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
         
-        pinguins = [assets[PINGUIMP_IMG], assets[PINGUIMD_IMG], assets[PINGUIMPP_IMG], \
-            assets[PINGUIMPD_IMG], assets[PINGUIMGORDOP_IMG], assets[PINGUIMGORDOD_IMG]]
+        pinguins = [assets[PINGUIMP_IMG], assets[PINGUIMP_FLIP_IMG], assets[PINGUIMD_IMG], assets[PINGUIMD_FLIP_IMG], \
+            assets[PINGUIMPP_IMG], assets[PINGUIMPP_FLIP_IMG], assets[PINGUIMPD_IMG], assets[PINGUIMPD_FLIP_IMG], \
+                assets[PINGUIMGORDOP_IMG], assets[PINGUIMGORDOP_FLIP_IMG], assets[PINGUIMGORDOD_IMG], assets[PINGUIMGORDOD_FLIP_IMG]]
 
         self.images = {
             'NORMAL': {
-                'PARADO': pinguins[0],
-                'DESLIZANDO': pinguins[1]
+                'PARADO': {
+                    'ESQUERDA': pinguins[0],
+                    'DIREITA': pinguins[1]
+                }
+                'DESLIZANDO': {
+                    'ESQUERDA': pinguins[2],
+                    'DIREITA': pinguins[3]
+                }
             },
             'PODEROSO':{
-                'PARADO': pinguins[2],
-                'DESLIZANDO': pinguins[3]
+                'PARADO': { 
+                    'ESQUERDA': pinguins[4],
+                    'DIREITA': pinguins[5]
+                }
+                'DESLIZANDO': {
+                    'ESQUERDA': pinguins[6],
+                    'DIREITA': pinguins[7]
+                }
             },
             'GORDO':{
-                'PARADO': pinguins[4],
-                'DESLIZANDO': pinguins[5]
+                'PARADO': {
+                    'ESQUERDA': pinguins[8],
+                    'DIREITA': pinguins[9]
+                }
+                'DESLIZANDO': {
+                    'ESQUERDA': pinguins[10],
+                    'DIREITA': pinguins[11]
+                }
             }
         }
 
         self.state1 = 'NORMAL'
         self.state2 = 'PARADO'
-        self.image = self.images['NORMAL'['PARADO']]
+        self.state3 = 'DIREITA'
+        self.image = self.images['NORMAL'['PARADO'['DIREITA']]]
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH / 2
@@ -66,7 +84,13 @@ class Pinguim(pygame.sprite.Sprite):
         if self.state2 == 'PARADO':
             self.state2 == 'PARADO'
         if self.state2 == 'DESLIZANDO':
-            self.state2 == 'DESLIZANDO'        
+            self.state2 == 'DESLIZANDO'  
+
+        # Atualiza estado 3 (esquerda ou direita):
+        if self.state3 == 'ESQUERDA':
+            self.state3 == 'ESQUERDA'
+        if self.state3 == 'DIREITA':
+            self.state3 == 'DIREITA'        
 
 class Carne(pygame.sprite.Sprite):
     def __init__(self, assets):
@@ -189,4 +213,4 @@ class Salmaozao(pygame.sprite.Sprite):
             # O novo salmaozao vai ser criado no topo da tela
             novo_salmaozao = Salmaozao(self.assets, self.rect.top, self.rect.centerx)
             self.groups['all_sprites'].add(novo_salmaozao)
-            self.assets[PODER_SND].play()
+            self.assets[PODER_SND].play()  

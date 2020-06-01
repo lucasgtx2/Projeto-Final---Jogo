@@ -73,8 +73,10 @@ def game_screen(window):
                     keys_down[event.key] = True
                     if event.key == pygame.K_LEFT:
                         player.speedx -= 20
+                        Pinguim.state3 = 'ESQUERDA'
                     if event.key == pygame.K_RIGHT:
                         player.speedx += 20
+                        Pinguim.state3 = 'DIREITA'
                 # Verifica se soltou alguma tecla.
                 if event.type == pygame.KEYUP:
                     Pinguim.state2 = 'PARADO'
@@ -156,5 +158,5 @@ def game_screen(window):
 
         pygame.display.update()  # Mostra o novo frame para o jogador
 
-        return state
+        return state  
                                                                                                                                                         
