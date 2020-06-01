@@ -1,8 +1,11 @@
 # Game screen
 import pygame
 from config import FPS, WIDTH, HEIGHT, BLACK, YELLOW, RED, END, QUIT
-from assets import *
+
 from codigo_para_os_sprites import Pinguim, Carne, Salmaozao, Pedra, Bomba
+from assets import *
+
+assets = load_assets()
 
 # Função que coordena o funcionamento do jogo: 
 def game_screen(window):
