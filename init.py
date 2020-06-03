@@ -14,6 +14,10 @@ def init_screen(screen):
     text_rect.x = 50
     text_rect.y = 100
 
+    # Botao para instrucao:
+
+    # Botao para jogar
+
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
     

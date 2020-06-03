@@ -133,6 +133,9 @@ class Bomba(pygame.sprite.Sprite):
         self.rect.y = random.randint(-100, - BOMBA_PEDRA_HEIGHT)
         self.speedy = 10
 
+        self.assets
+        self.groups
+
         # Só será possível cair uma bomba entre 20 e 30s
         self.ultima_queda = pygame.time.get_ticks()
         self.queda_ticks = random.randint(20000, 30000)

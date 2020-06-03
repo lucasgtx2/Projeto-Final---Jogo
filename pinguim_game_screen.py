@@ -88,30 +88,36 @@ def game_screen(window):
                         player.state3 = 'ESQUERDA'
                         
                         if player.state1 == 'NORMAL':
-                            player.speedx -= 20
+                            player.speedx -= 15
                         
                         if player.state1 == 'PODEROSO':
-                            player.speedx -= 30 
+                            player.speedx -= 25 
                         
                     if event.key == pygame.K_RIGHT:
                         
                         player.state3 = 'DIREITA'
                         
                         if player.state1 == 'NORMAL':
-                            player.speedx += 20
+                            player.speedx += 15
                         
                         if player.state1 == 'PODEROSO':
-                            player.speedx += 30 
+                            player.speedx += 25
 
                 # Verifica se soltou alguma tecla.
                 if event.type == pygame.KEYUP:
                     player.state2 = 'PARADO'
                     # Dependendo da tecla, altera a velocidade.
                     if event.key in keys_down and keys_down[event.key]:
-                        if event.key == pygame.K_LEFT:
-                            player.speedx += 8
-                        if event.key == pygame.K_RIGHT:
-                            player.speedx -= 8
+                        if player.state1 == 'NORMAL':
+                            if player.state3 == 'ESQUERDA': 
+                                player.speedx += 15 
+                            if player.state3 == 'DIREITA':
+                                player.speedx -= 15
+                        if player.state1 == 'PODEROSO':
+                            if player.state3 == 'ESQUERDA': 
+                                player.speedx += 25 
+                            if player.state3 == 'DIREITA':
+                                player.speedx -= 25
                 
         # ----- Atualiza estado do jogo:
         

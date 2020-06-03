@@ -29,6 +29,7 @@ while state != QUIT:
         assets[MUSICA_JOGO_SND].play()
         state = game_screen(window)
     elif state == END:
+        assets[MUSICA_JOGO_SND].stop()
         state = end_screen(window)
     else:
         state = QUIT
