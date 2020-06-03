@@ -5,24 +5,26 @@ from config import FPS, WIDTH, HEIGHT, BLACK, YELLOW, RED, END, QUIT
 from codigo_para_os_sprites import Pinguim, Carne, Salmaozao, Pedra, Bomba
 from assets import *
 
-assets = load_assets()
-
 # Função que coordena o funcionamento do jogo: 
 def game_screen(window):
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
+
+    assets = load_assets()
  
     #Criando grupos com os sprites:
     all_sprites = pygame.sprite.Group()
     all_carnes = pygame.sprite.Group()
     all_pedras = pygame.sprite.Group()
+    all_bombas = pygame.sprite.Group()
+    all_salmao_inteiros = pygame.sprite.Group()
     groups = {}
     groups['all_sprites'] = all_sprites
     groups['all_carnes'] = all_carnes
     groups['all_pedras'] = all_pedras
 
     # Criando o jogador:
-    player = Pinguim(groups, assets)
+    player = Pinguim(assets)
     all_sprites.add(player)
     
     # Criando as carnes (salmão):
@@ -33,16 +35,18 @@ def game_screen(window):
 
     #Criando salmão inteiro:
     salmao_inteiro = Salmaozao(groups, assets)
+    all_salmao_inteiros.add(salmao_inteiro)
     all_sprites.add(salmao_inteiro)
 
     #Criando pedras:
     for i in range(3):
-        pedra = Pedra(groups, assets)
+        pedra = Pedra(assets)
         all_pedras.add(pedra)
         all_sprites.add(pedra)
 
     #Criando bomba:
     bomba = Bomba(groups, assets)
+    all_bombas.add(bomba)
     all_sprites.add(bomba)
 
     # Estados do jogo:
@@ -60,9 +64,9 @@ def game_screen(window):
     pygame.mixer.music.play(loops=-1)
     
     # ===== Loop principal =====
-    while state != DONE or state != END:
+    while state != DONE or state != DEAD:
         clock.tick(FPS)
-
+        
         # ----- Trata eventos
         for event in pygame.event.get():
             # ----- Verifica consequências
@@ -74,32 +78,32 @@ def game_screen(window):
             if state == PLAYING:
                 # Verifica se apertou alguma tecla.
                 if event.type == pygame.KEYDOWN:
-                    Pinguim.state2 = 'DESLIZANDO'
+                    player.state2 = 'DESLIZANDO'
                     # Dependendo da tecla, altera a velocidade.
                     keys_down[event.key] = True
                     if event.key == pygame.K_LEFT:
                         
-                        Pinguim.state3 = 'ESQUERDA'
+                        player.state3 = 'ESQUERDA'
                         
-                        if Pinguim.state1 == 'NORMAL':
+                        if player.state1 == 'NORMAL':
                             player.speedx -= 20
                         
-                        if Pinguim.state1 == 'PODEROSO':
+                        if player.state1 == 'PODEROSO':
                             player.speedx -= 30 
                         
                     if event.key == pygame.K_RIGHT:
                         
-                        Pinguim.state3 = 'DIREITA'
+                        player.state3 = 'DIREITA'
                         
-                        if Pinguim.state1 == 'NORMAL':
+                        if player.state1 == 'NORMAL':
                             player.speedx += 20
                         
-                        if Pinguim.state1 == 'PODEROSO':
+                        if player.state1 == 'PODEROSO':
                             player.speedx += 30
 
                 # Verifica se soltou alguma tecla.
                 if event.type == pygame.KEYUP:
-                    Pinguim.state2 = 'PARADO'
+                    player.state2 = 'PARADO'
                     # Dependendo da tecla, altera a velocidade.
                     if event.key in keys_down and keys_down[event.key]:
                         if event.key == pygame.K_LEFT:
@@ -115,13 +119,13 @@ def game_screen(window):
         if state == PLAYING:
             
             # Verifica se o pinguim comeu pedaço de carne:
-            comeu = pygame.sprite.groupcollide(all_carnes, player, True, True, pygame.sprite.collide_mask)
+            comeu = pygame.sprite.spritecollide(player, all_carnes, True, pygame.sprite.collide_mask)
             for carne in comeu: # As chaves são os elementos do primeiro grupo (salmao) que colidiram com o penguim
                 # O salmao e destruido e precisa ser recriado
                 assets[MORDIDA_SND].play()
-                s = Carne(assets)
-                all_sprites.add(s)
-                all_carnes.add(s)
+                carne = Carne(assets)
+                all_sprites.add(carne)
+                all_carnes.add(carne)
             
                 # Ganhou pontos!
                 score += 100
@@ -133,15 +137,15 @@ def game_screen(window):
             for pedra in hits:
                 # O salmao e destruido e precisa ser recriado
                 assets[PEDRA_SND].play()
-                p = Pedra(assets)
-                all_sprites.add(p)
-                all_carnes.add(p)
+                pedra = Pedra(assets)
+                all_sprites.add(pedra)
+                all_carnes.add(pedra)
 
                 # Perdeu uma vida!
                 lives -= 1
                 
             # Verifica se houve colisão entre pinguim e bomba
-            hits = pygame.sprite.spritecollide(player, bomba, True, pygame.sprite.collide_mask)
+            hits = pygame.sprite.spritecollide(player, all_bombas, True, pygame.sprite.collide_mask)
             if len(hits) > 0:
                 assets[EXPLOSAO_SND].play()
                 b = Bomba(assets)
@@ -151,14 +155,14 @@ def game_screen(window):
                 state = END
 
             # Verifica se pinguim comeu o salmãozão:  
-            poder = pygame.sprite.spritecollide(player, salmao_inteiro, True, pygame.sprite.collide_mask)
+            poder = pygame.sprite.spritecollide(player, all_salmao_inteiros, True, pygame.sprite.collide_mask)
             if len(poder) == 1:
                 assets[PODER_SND].play()
                 salmao_inteiro.kill()
                 all_sprites.remove(salmao_inteiro)
                 salmao_inteiro = Salmaozao(assets)
                 all_sprites.add(salmao_inteiro)
-                Pinguim.state1 = 'PODEROSO'
+                player.state1 = 'PODEROSO'
 
         # ----- Gera saídas
         window.blit(assets[BACKGROUND], (0, 0))
@@ -173,11 +177,11 @@ def game_screen(window):
         window.blit(text_surface, text_rect)
 
         # Desenhando as vidas:
-        text_surface = assets[INIT_FONT].render(chr(9829) * lives, True, RED)
         text_rect = text_surface.get_rect()
+        text_surface = assets[SCORE_FONT].render(chr(9829) * lives, True, RED)
         text_rect.bottomleft = (10, HEIGHT - 10)
         window.blit(text_surface, text_rect)
 
         pygame.display.update()  # Mostra o novo frame para o jogador
 
-        return state  
+        return state    

@@ -3,7 +3,7 @@ import pygame
 import os 
 from config import IMG_DIR, SND_DIR, FNT_DIR, PINGUIMD_WIDTH, PINGUIMD_HEIGHT, \
     PINGUIMP_WIDTH, PINGUIMP_HEIGHT, SALMAOC_WIDTH, SALMAOC_HEIGHT, SALMAOD_WIDTH, \
-        SALMAOD_HEIGHT, BOMBA_PEDRA_WIDTH, BOMBA_PEDRA_HEIGHT
+        SALMAOD_HEIGHT, BOMBA_PEDRA_WIDTH, BOMBA_PEDRA_HEIGHT, WIDTH, HEIGHT
 
 # Define imagens do jogo:   
 BACKGROUND = 'background_img'
@@ -52,24 +52,25 @@ def load_assets():
     
     #Carrega as imagens utilizadas:
     assets[BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR, 'fundo neve igloo.jpg')).convert()
+    assets[BACKGROUND] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
 
     assets[INIT_BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR, 'init background.jpg')).convert()
 
     assets[PINGUIMD_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pinguim deitado.jpg')).convert_alpha()
     assets[PINGUIMD_IMG] = pygame.transform.scale(assets['pinguim_deitado_img'], (PINGUIMD_WIDTH, PINGUIMD_HEIGHT))
-    assets[PINGUIMD_FLIP_IMG] = pygame.transform.flip(assets['pinguim_deitado_img'], False, True)
+    assets[PINGUIMD_FLIP_IMG] = pygame.transform.flip(assets['pinguim_deitado_img'], True, False)
 
     assets[PINGUIMP_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pinguim em pe.png')).convert_alpha()
     assets[PINGUIMP_IMG] = pygame.transform.scale(assets['pinguim_em_pe_img'], (PINGUIMP_WIDTH, PINGUIMP_HEIGHT))
-    assets[PINGUIMP_FLIP_IMG] = pygame.transform.flip(assets['pinguim_em_pe_img'], False, True)
+    assets[PINGUIMP_FLIP_IMG] = pygame.transform.flip(assets['pinguim_em_pe_img'], True, False)
 
     assets[PINGUIMPP_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pinguim poderoso em pe.jpg')).convert_alpha()
     assets[PINGUIMPP_IMG] = pygame.transform.scale(assets['pinguim_poderoso_em_pe_img'], (PINGUIMP_WIDTH, PINGUIMP_HEIGHT))
-    assets[PINGUIMPP_FLIP_IMG] = pygame.transform.flip(assets['pinguim_poderoso_em_pe_img'], False, True)
+    assets[PINGUIMPP_FLIP_IMG] = pygame.transform.flip(assets['pinguim_poderoso_em_pe_img'], True, False)
 
     assets[PINGUIMPD_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pinguim poderoso deitado.jpg')).convert_alpha()
     assets[PINGUIMPD_IMG] = pygame.transform.scale(assets['pinguim_poderoso_deitado_img'], (PINGUIMP_WIDTH, PINGUIMP_HEIGHT))
-    assets[PINGUIMPD_FLIP_IMG] = pygame.transform.flip(assets['pinguim_deitado_img'], False, True)
+    assets[PINGUIMPD_FLIP_IMG] = pygame.transform.flip(assets['pinguim_deitado_img'], True, False)
 
     '''assets[PINGUIMGORDOP_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pinguim gordo em pe.jpg')).convert_alpha()
     assets[PINGUIMGORDOP_IMG] = pygame.transform.scale(assets['pinguim_gordo_em_pe_img'], (PINGUIMP_WIDTH, PINGUIMP_HEIGHT))
@@ -127,3 +128,4 @@ def load_assets():
     
     return assets
 
+  

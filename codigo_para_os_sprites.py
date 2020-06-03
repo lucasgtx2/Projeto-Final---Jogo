@@ -27,7 +27,7 @@ class Pinguim(pygame.sprite.Sprite):
                     'DIREITA': pinguins[3]
                 }
             },
-            'PODEROSO':{
+            'PODEROSO': {
                 'PARADO': { 
                     'ESQUERDA': pinguins[4],
                     'DIREITA': pinguins[5]
@@ -42,7 +42,7 @@ class Pinguim(pygame.sprite.Sprite):
         self.state1 = 'NORMAL'
         self.state2 = 'PARADO'
         self.state3 = 'DIREITA'
-        self.image = self.images['NORMAL'['PARADO'['DIREITA']]]
+        self.image = self.images[self.state1][self.state2][self.state3]
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH / 2
@@ -94,7 +94,7 @@ class Carne(pygame.sprite.Sprite):
             self.speedy = random.randint(2, 9)
 
 class Pedra(pygame.sprite.Sprite):
-    def __init__(self, groups, assets):
+    def __init__(self, assets):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
 
@@ -190,6 +190,6 @@ class Salmaozao(pygame.sprite.Sprite):
             # Marca o tick da nova imagem.
             self.ultima_queda = now
             # O novo salmaozao vai ser criado no topo da tela
-            novo_salmaozao = Salmaozao(self.assets, self.rect.top, self.rect.centerx)
+            novo_salmaozao = Salmaozao(self. groups, self.assets)
             self.groups['all_sprites'].add(novo_salmaozao)
-            self.assets[PODER_SND].play()  
+            self.assets[PODER_SND].play()    
