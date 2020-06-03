@@ -192,4 +192,4 @@ class Salmaozao(pygame.sprite.Sprite):
             # O novo salmaozao vai ser criado no topo da tela
             novo_salmaozao = Salmaozao(self. groups, self.assets)
             self.groups['all_sprites'].add(novo_salmaozao)
-            self.assets[PODER_SND].play()    
+            self.assets[PODER_SND].play()

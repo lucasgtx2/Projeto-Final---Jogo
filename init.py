@@ -52,4 +52,4 @@ def init_screen(screen):
         #Atualiza o background
         pygame.display.flip()
 
-    return state           
+    return state
