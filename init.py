@@ -3,20 +3,29 @@ import pygame
 import random
 import os
 from assets import *    
-from config import IMG_DIR, BLACK, FPS, GAME, QUIT, WIDTH, HEIGHT 
+from config import IMG_DIR, BLACK, FPS, GAME, QUIT, WIDTH, HEIGHT, INSTRUCTIONS, END 
 
 def init_screen(screen):
     assets = load_assets()
 
     # Título do jogo:
-    text = assets[INIT_FONT].render('Pinguim Faminto', True, (0, 0, 0))
-    text_rect = text.get_rect()
-    text_rect.x = 50
-    text_rect.y = 100
+    titulo = assets[INIT_FONT].render('Pinguim Faminto', True, (0, 0, 0))
+    titulo_rect = titulo.get_rect()
+    titulo_rect.x = 50
+    titulo_rect.y = 100
 
-    # Botao para instrucao:
+    # Botao para instrucoes:
+    inst = assets[INIT_FONT_2].render('Aperte seta para baixo para ver as instruções de jogo', True, (0, 0, 0))
+    inst_rect = inst.get_rect()
+    inst_rect.x = 50
+    inst_rect.y = 500
+    
+    # Botao para jogar:
+    jogar = assets[INIT_FONT_3].render('Aperte espaco para jogar', True, (0, 0, 0))
+    jogar_rect = jogar.get_rect()
+    jogar_rect.x = 50
+    jogar_rect.y = 400
 
-    # Botao para jogar
 
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
@@ -45,13 +54,21 @@ def init_screen(screen):
             # Passa para o jogo quando o jogador apertar "espaço"
             if event.type == pygame.KEYDOWN:
                 keys_down[event.key] = True
+                
                 if event.key == pygame.K_SPACE:
                     keys_down[event.key] = True
                     state = GAME
                     running = False
+                
+                if event.key == pygame.K_DOWN:
+                    keys_down[event.key] = True
+                    state = INSTRUCTIONS
+                    running = False
         
         screen.blit(background, background_rect)
-        screen.blit(text, text_rect)
+        screen.blit(titulo, titulo_rect)
+        screen.blit(inst, inst_rect)
+        screen.blit(jogar, jogar_rect)
 
         #Atualiza o background
         pygame.display.flip()

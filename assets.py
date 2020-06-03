@@ -7,7 +7,10 @@ from config import IMG_DIR, SND_DIR, FNT_DIR, PINGUIMD_WIDTH, PINGUIMD_HEIGHT, \
 
 # Define imagens do jogo:   
 BACKGROUND = 'background_img'
+
 INIT_BACKGROUND = 'init_background_img'
+
+INSTRUCOES = 'instrucoes_img'
 
 PINGUIMD_IMG = 'pinguim_deitado_img'
 PINGUIMD_FLIP_IMG = 'pinguim_deitado_flip_img'
@@ -42,9 +45,12 @@ MUSICA_INICIAL_SND = 'musica_inicial_snd'
 PODER_SND = 'poder_snd'
 MORDIDA_SND = 'mordida_snd'
 
-# Define sons do jogo:
+# Define fontes do jogo:
 SCORE_FONT = 'score_font'
 INIT_FONT = 'init_font'
+INIT_FONT_2 = 'init_font_2'
+INIT_FONT_3 = 'init_font_3'
+
 
 # Função principal que carrega os assets:
 def load_assets():
@@ -123,6 +129,8 @@ def load_assets():
 
     # Carrega as fontes:
     assets[INIT_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'fonte titulo.ttf'), 75)
+    assets[INIT_FONT_2] = pygame.font.Font(os.path.join(FNT_DIR, 'fonte titulo.ttf'), 25)
+    assets[INIT_FONT_3] = pygame.font.Font(os.path.join(FNT_DIR, 'fonte titulo.ttf'), 25)
     
     assets[SCORE_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'score fonte.ttf'), 28)
     
