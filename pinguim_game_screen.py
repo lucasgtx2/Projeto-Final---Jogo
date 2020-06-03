@@ -22,13 +22,15 @@ def game_screen(window):
     groups['all_sprites'] = all_sprites
     groups['all_carnes'] = all_carnes
     groups['all_pedras'] = all_pedras
+    groups['all_bombas'] = all_bombas
+    groups['all_salmao_inteiros'] = all_salmao_inteiros
 
     # Criando o jogador:
     player = Pinguim(assets)
     all_sprites.add(player)
     
     # Criando as carnes (salmão):
-    for carne in range(6):
+    for carne in range(4):
         carne = Carne(assets)
         all_sprites.add(carne)
         all_carnes.add(carne)
@@ -39,7 +41,7 @@ def game_screen(window):
     all_sprites.add(salmao_inteiro)
 
     #Criando pedras:
-    for i in range(3):
+    for i in range(2):
         pedra = Pedra(assets)
         all_pedras.add(pedra)
         all_sprites.add(pedra)
@@ -99,7 +101,7 @@ def game_screen(window):
                             player.speedx += 20
                         
                         if player.state1 == 'PODEROSO':
-                            player.speedx += 30
+                            player.speedx += 30 
 
                 # Verifica se soltou alguma tecla.
                 if event.type == pygame.KEYUP:
@@ -115,7 +117,7 @@ def game_screen(window):
         
         # Atualizando a posição dos sprites:
         all_sprites.update()
-
+        
         if state == PLAYING:
             
             # Verifica se o pinguim comeu pedaço de carne:
@@ -148,7 +150,7 @@ def game_screen(window):
             hits = pygame.sprite.spritecollide(player, all_bombas, True, pygame.sprite.collide_mask)
             if len(hits) > 0:
                 assets[EXPLOSAO_SND].play()
-                b = Bomba(assets)
+                b = Bomba(groups, assets)
                 all_sprites.add(b)
                 player.kill()
                 lives = 0
@@ -160,10 +162,10 @@ def game_screen(window):
                 assets[PODER_SND].play()
                 salmao_inteiro.kill()
                 all_sprites.remove(salmao_inteiro)
-                salmao_inteiro = Salmaozao(assets)
+                salmao_inteiro = Salmaozao(groups, assets)
                 all_sprites.add(salmao_inteiro)
                 player.state1 = 'PODEROSO'
-
+        
         # ----- Gera saídas
         window.blit(assets[BACKGROUND], (0, 0))
         
@@ -184,4 +186,4 @@ def game_screen(window):
 
         pygame.display.update()  # Mostra o novo frame para o jogador
 
-        return state    
+    return state    

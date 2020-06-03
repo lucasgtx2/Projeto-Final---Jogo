@@ -91,7 +91,7 @@ class Carne(pygame.sprite.Sprite):
         if self.rect.top > HEIGHT or self.rect.right < 0 or self.rect.left > WIDTH:
             self.rect.x = random.randint(0, WIDTH - SALMAOC_WIDTH)
             self.rect.y = random.randint(-100, -SALMAOC_HEIGHT)
-            self.speedy = random.randint(2, 9)
+            self.speedy = random.randint(4, 7)
 
 class Pedra(pygame.sprite.Sprite):
     def __init__(self, assets):
@@ -151,7 +151,7 @@ class Bomba(pygame.sprite.Sprite):
             # Marca o tick da nova imagem.
             self.ultima_queda = now
             # A nova bomba vai ser criada no topo da tela
-            nova_bomba = Bomba(self.assets)
+            nova_bomba = Bomba(self.groups, self.assets)
             self.groups['all_sprites'].add(nova_bomba)
             self.assets[EXPLOSAO_SND].play()
 

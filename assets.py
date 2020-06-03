@@ -127,5 +127,3 @@ def load_assets():
     assets[SCORE_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'score fonte.ttf'), 28)
     
     return assets
-
-  

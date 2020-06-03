@@ -19,10 +19,14 @@ pygame.display.set_caption('Pinguim Faminto')
 
 # loop principal do jogo:
 state = INIT
+assets = load_assets()
 while state != QUIT:
     if state == INIT:
+        assets[MUSICA_INICIAL_SND].play()
         state = init_screen(window)
     elif state == GAME:
+        assets[MUSICA_INICIAL_SND].stop()
+        assets[MUSICA_JOGO_SND].play()
         state = game_screen(window)
     elif state == END:
         state = end_screen(window)
