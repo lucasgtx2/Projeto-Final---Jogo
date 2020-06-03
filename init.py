@@ -23,7 +23,7 @@ def init_screen(screen):
     # Botao para jogar:
     jogar = assets[INIT_FONT_3].render('Aperte espaco para jogar', True, (0, 0, 0))
     jogar_rect = jogar.get_rect()
-    jogar_rect.x = 50
+    jogar_rect.x = 200
     jogar_rect.y = 400
 
 
