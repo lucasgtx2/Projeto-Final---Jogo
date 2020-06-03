@@ -1,9 +1,9 @@
 #código para instruções
 import pygame
 import os
-from assets import
+from assets import * 
 
-def instrucoes_screen:
+def instrucoes_screen(screen):
     assets = load_assets()
 
     background = assets[INSTRUCOES]
@@ -39,5 +39,7 @@ def instrucoes_screen:
                     keys_down[event.key] = True
                     state = INIT
                     running = False
-    
+        
+        screen.blit(background, background_rect)
+
     return state
