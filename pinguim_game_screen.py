@@ -130,6 +130,7 @@ def game_screen(window):
             comeu = pygame.sprite.spritecollide(player, all_carnes, True, pygame.sprite.collide_mask)
             for carne in comeu: # As chaves são os elementos do primeiro grupo (salmao) que colidiram com o penguim
                 # O salmao e destruido e precisa ser recriado
+                assets[MORDIDA_SND].stop()
                 assets[MORDIDA_SND].play()
                 carne = Carne(assets)
                 all_sprites.add(carne)
@@ -152,6 +153,7 @@ def game_screen(window):
             hits = pygame.sprite.spritecollide(player, all_pedras, True, pygame.sprite.collide_mask)
             for pedra in hits:
                 # O salmao e destruido e precisa ser recriado
+                assets[PEDRA_SND].stop()
                 assets[PEDRA_SND].play()
                 pedra = Pedra(assets)
                 all_sprites.add(pedra)
@@ -163,6 +165,7 @@ def game_screen(window):
             # Verifica se houve colisão entre pinguim e bomba
             hits = pygame.sprite.spritecollide(player, all_bombas, True, pygame.sprite.collide_mask)
             if len(hits) > 0:
+                assets[EXPLOSAO_SND].stop()
                 assets[EXPLOSAO_SND].play()
                 b = Bomba(groups)
                 all_sprites.add(b)
@@ -173,7 +176,7 @@ def game_screen(window):
             # Verifica se pinguim comeu o salmãozão:  
             poder = pygame.sprite.spritecollide(player, all_salmao_inteiros, True, pygame.sprite.collide_mask)
             if len(poder) == 1:
-                assets[PODER_SND].play()
+                assets[EXPLOSAO_SND].stop()
                 salmao_inteiro.kill()
                 all_sprites.remove(salmao_inteiro)
                 salmao_inteiro = Salmaozao(groups, assets)
