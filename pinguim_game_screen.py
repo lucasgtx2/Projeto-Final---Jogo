@@ -176,7 +176,8 @@ def game_screen(window):
             # Verifica se pinguim comeu o salmãozão:  
             poder = pygame.sprite.spritecollide(player, all_salmao_inteiros, True, pygame.sprite.collide_mask)
             if len(poder) == 1:
-                assets[EXPLOSAO_SND].stop()
+                assets[PODER_SND].stop()
+                assets[PODER_SND].play()
                 salmao_inteiro.kill()
                 all_sprites.remove(salmao_inteiro)
                 salmao_inteiro = Salmaozao(groups, assets)
