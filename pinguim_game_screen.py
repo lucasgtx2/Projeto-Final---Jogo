@@ -47,7 +47,7 @@ def game_screen(window):
         all_sprites.add(pedra)
 
     #Criando bomba:
-    bomba = Bomba(groups, assets)
+    bomba = Bomba(groups)
     all_bombas.add(bomba)
     all_sprites.add(bomba)
 
@@ -140,12 +140,13 @@ def game_screen(window):
                 carne.som_ticks = 1000
                 now = 
                 if 
+                '''
             
                 # Ganhou pontos!
                 score += 100
                 if score % 1000 == 0:
                     lives += 1
-                '''
+                
 
             # Verifica se houve colisão entre pinguim e pedra
             hits = pygame.sprite.spritecollide(player, all_pedras, True, pygame.sprite.collide_mask)
@@ -163,7 +164,7 @@ def game_screen(window):
             hits = pygame.sprite.spritecollide(player, all_bombas, True, pygame.sprite.collide_mask)
             if len(hits) > 0:
                 assets[EXPLOSAO_SND].play()
-                b = Bomba(groups, assets)
+                b = Bomba(groups)
                 all_sprites.add(b)
                 player.kill()
                 lives = 0

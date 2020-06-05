@@ -76,7 +76,7 @@ class Carne(pygame.sprite.Sprite):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = assets[SALMAOC_IMG]
+        self.image = assets[SALMAOC_IMG].set_colorkey((255, 255, 255))
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(0, WIDTH - SALMAOC_WIDTH)
@@ -98,7 +98,7 @@ class Pedra(pygame.sprite.Sprite):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = assets[PEDRA_IMG]
+        self.image = assets[PEDRA_IMG].set_colorkey((255, 255, 255))
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(0, WIDTH - BOMBA_PEDRA_WIDTH)
@@ -123,17 +123,17 @@ class Pedra(pygame.sprite.Sprite):
             self.speedy = random.randint(7, 15)
 
 class Bomba(pygame.sprite.Sprite):
-    def __init__(self, groups,  assets):
+    def __init__(self, groups):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = assets[BOMBA_IMG]
+        assets = load_assets()
+
+        self.image = assets[BOMBA_IMG].set_colorkey((255, 255, 255))
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(0, WIDTH - BOMBA_PEDRA_WIDTH)
         self.rect.y = random.randint(-100, - BOMBA_PEDRA_HEIGHT)
         self.speedy = 10
-
-        self.assets
         self.groups
 
         # Só será possível cair uma bomba entre 20 e 30s

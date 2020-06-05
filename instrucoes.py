@@ -2,6 +2,7 @@
 import pygame
 import os
 from assets import * 
+from config import FPS
  
 def instrucoes_screen(screen):
     assets = load_assets()
