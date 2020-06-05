@@ -66,6 +66,10 @@ def load_assets():
     assets[BACKGROUND] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
 
     assets[INIT_BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR, 'init background.jpg')).convert()
+    assets[INIT_BACKGROUND] = pygame.transform.scale(assets[INIT_BACKGROUND], (WIDTH, HEIGHT))
+
+    assets[INATRUCOES] = pygame.image.load(os.path.join(IMG_DIR, 'instrucoes.png')).convert()
+    assets[INSTRUCOES] = pygame.transform.scale(assets[INSTRUCOES], (WIDTH, HEIGHT))
 
     assets[PINGUIMD_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pinguim deitado.jpg')).convert_alpha()
     assets[PINGUIMD_IMG] = pygame.transform.scale(assets['pinguim_deitado_img'], (PINGUIMD_WIDTH, PINGUIMD_HEIGHT))
