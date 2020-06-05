@@ -5,12 +5,12 @@ from os import path
 IMG_DIR = path.join(path.dirname(__file__), 'assets', 'imagens')
 
 SND_DIR = path.join(path.dirname(__file__), 'assets', 'sons')
-
+ 
 FNT_DIR = path.join(path.dirname(__file__), 'assets', 'fontes')
    
 # Dados gerais do jogo.
-WIDTH = 800 # Largura da tela
-HEIGHT = 700 # Altura da tela
+WIDTH = 700 # Largura da tela
+HEIGHT = 600 # Altura da tela
 FPS = 30 # Frames por segundo
 
 # Define tamanhos dos sprites

@@ -4,7 +4,7 @@ from config import FPS, WIDTH, HEIGHT, BLACK, YELLOW, RED, END, QUIT
 
 from codigo_para_os_sprites import Pinguim, Carne, Salmaozao, Pedra, Bomba
 from assets import *
-
+ 
 # Função que coordena o funcionamento do jogo: 
 def game_screen(window):
     # Variável para o ajuste de velocidade
@@ -134,11 +134,18 @@ def game_screen(window):
                 carne = Carne(assets)
                 all_sprites.add(carne)
                 all_carnes.add(carne)
+                '''
+                # Verifica parar o som
+                carne.som = pygame.time.get_ticks()
+                carne.som_ticks = 1000
+                now = 
+                if 
             
                 # Ganhou pontos!
                 score += 100
                 if score % 1000 == 0:
                     lives += 1
+                '''
 
             # Verifica se houve colisão entre pinguim e pedra
             hits = pygame.sprite.spritecollide(player, all_pedras, True, pygame.sprite.collide_mask)

@@ -2,7 +2,7 @@
 import pygame
 import os
 from assets import * 
-
+ 
 def instrucoes_screen(screen):
     assets = load_assets()
 

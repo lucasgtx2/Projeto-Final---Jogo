@@ -4,7 +4,7 @@ import random
 import os
 from assets import *    
 from config import IMG_DIR, BLACK, FPS, GAME, QUIT, WIDTH, HEIGHT, INSTRUCTIONS, END 
-
+ 
 def init_screen(screen):
     assets = load_assets()
 

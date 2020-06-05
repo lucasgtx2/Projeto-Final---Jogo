@@ -4,7 +4,7 @@ import os
 from config import IMG_DIR, SND_DIR, FNT_DIR, PINGUIMD_WIDTH, PINGUIMD_HEIGHT, \
     PINGUIMP_WIDTH, PINGUIMP_HEIGHT, SALMAOC_WIDTH, SALMAOC_HEIGHT, SALMAOD_WIDTH, \
         SALMAOD_HEIGHT, BOMBA_PEDRA_WIDTH, BOMBA_PEDRA_HEIGHT, WIDTH, HEIGHT
-
+ 
 # Define imagens do jogo:   
 BACKGROUND = 'background_img'
 
@@ -59,6 +59,7 @@ INIT_FONT_4 = 'init_font_4'
 def load_assets():
     assets = {}
     
+
     #Carrega as imagens utilizadas:
     assets[BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR, 'fundo neve igloo.jpg')).convert()
     assets[BACKGROUND] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
@@ -90,16 +91,20 @@ def load_assets():
     assets[PINGUIMGORDOD_FLIP_IMG] = pygame.transform.flip(assets['pinguim_gordo_deitado_img'], False, True)
     '''
     assets[SALMAOC_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'salmao carne.jpg')).convert_alpha()
+    assets[SALMAOC_IMG].set_colorkey((255, 255, 255))
     assets[SALMAOC_IMG] = pygame.transform.scale(assets['salmao_carne_img'], (SALMAOC_WIDTH, SALMAOC_HEIGHT))
 
-    assets[SALMAOD_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'salmao desenho.jpg')).convert_alpha()
+    assets[SALMAOD_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'salmao desenho.png')).convert_alpha()
+    assets[SALMAOD_IMG].set_colorkey((255, 255, 255))
     assets[SALMAOD_IMG] = pygame.transform.scale(assets['salmao_desenho_img'], (SALMAOD_WIDTH, SALMAOD_HEIGHT))
 
     assets[BOMBA_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'bomba desenho.jpg')).convert_alpha()
     assets[BOMBA_IMG] = pygame.transform.scale(assets['bomba_img'], (SALMAOD_WIDTH, SALMAOD_HEIGHT))
+    assets[BOMBA_IMG].set_colorkey((255, 255, 255))
 
     assets[PEDRA_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pedra desenho.jpg')).convert_alpha()
     assets[PEDRA_IMG] = pygame.transform.scale(assets['pedra_img'], (SALMAOD_WIDTH, SALMAOD_HEIGHT))
+    assets[PEDRA_IMG].set_colorkey((255, 255, 255))
     
     #Carrega os sons:
     pygame.mixer.music.load(os.path.join(SND_DIR, 'explosao-arcade.wav'))
