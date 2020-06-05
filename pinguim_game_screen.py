@@ -145,7 +145,7 @@ def game_screen(window):
             
                 # Ganhou pontos!
                 score += 100
-                if score % 1000 == 0:
+                if score % 10000 == 0:
                     lives += 1
                 
 
@@ -204,4 +204,4 @@ def game_screen(window):
 
         pygame.display.update()  # Mostra o novo frame para o jogador
 
-    return state
+    return state, groups

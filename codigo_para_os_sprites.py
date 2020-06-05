@@ -5,6 +5,9 @@ from config import IMG_DIR, SND_DIR,PINGUIMD_WIDTH, PINGUIMD_HEIGHT, \
     PINGUIMP_WIDTH, PINGUIMP_HEIGHT, SALMAOC_WIDTH, SALMAOC_HEIGHT, SALMAOD_WIDTH, \
         SALMAOD_HEIGHT, BOMBA_PEDRA_WIDTH, BOMBA_PEDRA_HEIGHT, WIDTH, HEIGHT
 from assets import *
+from pinguim_game_screen import *
+
+#groups = game_screen(window)[1]
  
 #Classe do Pinguim
 class Pinguim(pygame.sprite.Sprite):
@@ -76,7 +79,7 @@ class Carne(pygame.sprite.Sprite):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = assets[SALMAOC_IMG].set_colorkey((255, 255, 255))
+        self.image = assets[SALMAOC_IMG]
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(0, WIDTH - SALMAOC_WIDTH)
@@ -98,7 +101,7 @@ class Pedra(pygame.sprite.Sprite):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = assets[PEDRA_IMG].set_colorkey((255, 255, 255))
+        self.image = assets[PEDRA_IMG]
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(0, WIDTH - BOMBA_PEDRA_WIDTH)
@@ -129,7 +132,7 @@ class Bomba(pygame.sprite.Sprite):
 
         assets = load_assets()
 
-        self.image = assets[BOMBA_IMG].set_colorkey((255, 255, 255))
+        self.image = assets[BOMBA_IMG]
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(0, WIDTH - BOMBA_PEDRA_WIDTH)
         self.rect.y = random.randint(-100, - BOMBA_PEDRA_HEIGHT)
@@ -154,8 +157,9 @@ class Bomba(pygame.sprite.Sprite):
             # Marca o tick da nova imagem.
             self.ultima_queda = now
             # A nova bomba vai ser criada no topo da tela
-            nova_bomba = Bomba(self.groups, self.assets)
-            self.groups['all_sprites'].add(nova_bomba)
+            nova_bomba = Bomba(self.groups)
+            groups['all_sprites'].add(nova_bomba)
+            groups['all_bombas'].add(nova_bomba)
             self.assets[EXPLOSAO_SND].play()
 
 class Salmaozao(pygame.sprite.Sprite):
@@ -194,5 +198,5 @@ class Salmaozao(pygame.sprite.Sprite):
             self.ultima_queda = now
             # O novo salmaozao vai ser criado no topo da tela
             novo_salmaozao = Salmaozao(self. groups, self.assets)
-            self.groups['all_sprites'].add(novo_salmaozao)
+            groups['all_sprites'].add(novo_salmaozao)
             self.assets[PODER_SND].play()
