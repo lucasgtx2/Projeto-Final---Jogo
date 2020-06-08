@@ -1,7 +1,6 @@
 # Game screen
 import pygame
 from config import FPS, WIDTH, HEIGHT, BLACK, YELLOW, RED, END, QUIT
-
 from codigo_para_os_sprites import Pinguim, Carne, Salmaozao, Pedra, Bomba
 from assets import *
  
@@ -184,6 +183,9 @@ def game_screen(window):
                 all_sprites.add(salmao_inteiro)
                 player.state1 = 'PODEROSO'
         
+        if lives == 0:
+            state = END
+
         # ----- Gera saídas
         window.blit(assets[BACKGROUND], (0, 0))
         
@@ -204,4 +206,4 @@ def game_screen(window):
 
         pygame.display.update()  # Mostra o novo frame para o jogador
 
-    return state, groups
+    return state

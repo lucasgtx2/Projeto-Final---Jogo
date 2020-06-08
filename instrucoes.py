@@ -2,7 +2,7 @@
 import pygame
 import os
 from assets import * 
-from config import FPS, WIDTH, HEIGHT
+from config import FPS, WIDTH, HEIGHT, INIT, QUIT 
  
 def instrucoes_screen(screen):
     assets = load_assets()
@@ -27,17 +27,12 @@ def instrucoes_screen(screen):
                 state = QUIT
                 running = False
 
-            # Passa para o jogo quando o jogador apertar "espaço"
-            if event.type == pygame.KEYDOWN:
-                keys_down[event.key] = True
-            
-                if event.key == pygame.K_SPACE:
-                    keys_down[event.key] = True
-                    state = GAME
-                    running = False
-                    
-                if event.key == pygame.K_DOWN:
-                    keys_down[event.key] = True
+            # Verifica cliques do Mouse:
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                x,y = pygame.mouse.get_pos()
+                
+                # Verifica se jogador clicou em "Voltar":
+                if x >= 550 and x <= 650 and y >= 450 and y <= 550:
                     state = INIT
                     running = False
         

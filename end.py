@@ -41,6 +41,16 @@ def end_screen(screen):
                 state = QUIT
                 running = False
 
+            # Verifica cliques do Mouse:
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                x,y = pygame.mouse.get_pos()
+                
+                # Verifica se jogador clicou em "Jogar de novo":
+                if x >= 200 and x <= 500 and y >=300 and y <= 400:
+                    state = INIT
+                
+                running = False
+
             # Passa para o jogo quando o jogador apertar "espaço"
             if event.type == pygame.KEYDOWN:
                 keys_down[event.key] = True

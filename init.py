@@ -50,25 +50,20 @@ def init_screen(screen):
             if event.type == pygame.QUIT:
                 state = QUIT
                 running = False
-            '''
+            
+            # Verifica cliques do Mouse:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 x,y = pygame.mouse.get_pos()
-                if x
-            '''
-
-            # Passa para o jogo quando o jogador apertar "espaço"
-            if event.type == pygame.KEYDOWN:
-                keys_down[event.key] = True
                 
-                if event.key == pygame.K_SPACE:
-                    keys_down[event.key] = True
+                # Verifica se jogador clicou em "Jogar":
+                if x >= 200 and x <= 500 and y >=300 and y <= 400:
                     state = GAME
-                    running = False
+
+                # Verifica se jogador clicou em "Instruções":
+                if x >= 200 and x <= 500 and y >=420 and y <= 500:
+                    state = INSTRUCOES
                 
-                if event.key == pygame.K_DOWN:
-                    keys_down[event.key] = True
-                    state = INSTRUCTIONS
-                    running = False
+                running = False
         
         screen.blit(background, background_rect)
         screen.blit(titulo, titulo_rect)
