@@ -10,7 +10,7 @@ from codigo_para_os_sprites import *
 from assets import *
 
 #from end import end
- 
+  
 pygame.init()
 pygame.mixer.init()
 

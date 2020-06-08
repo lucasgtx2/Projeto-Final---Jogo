@@ -8,7 +8,7 @@ from assets import *
 from pinguim_game_screen import *
 
 #groups = game_screen(window)[1]
- 
+  
 #Classe do Pinguim
 class Pinguim(pygame.sprite.Sprite):
     def __init__(self, assets):
@@ -60,6 +60,15 @@ class Pinguim(pygame.sprite.Sprite):
     def update(self):
         # Atualização da posição do pinguim
         self.rect.x += self.speedx
+
+        # Atualiza imagens
+        bottom = self.rect.bottom
+        x = self.rect.centerx
+        self.image = self.images[self.state1][self.state2][self.state3]
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = self.image.get_rect()
+        self.rect.centerx = x
+        self.rect.bottom = bottom
 
         # Mantem dentro da tela:
         if self.rect.right > WIDTH:

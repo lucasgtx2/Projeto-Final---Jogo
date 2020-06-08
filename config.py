@@ -1,6 +1,6 @@
 # Configurações
 from os import path
-  
+   
 # Estabelece as pastas que contém imagens, sons e fontes:
 IMG_DIR = path.join(path.dirname(__file__), 'assets', 'imagens')
 

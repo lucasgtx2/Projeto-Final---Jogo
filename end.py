@@ -5,7 +5,7 @@ import os
 from assets import *    
 from config import IMG_DIR, BLACK, FPS, GAME, QUIT, WIDTH, HEIGHT, INSTRUCTIONS
 from pinguim_game_screen import score
- 
+  
 def end_screen(screen):
     assets = load_assets()
 

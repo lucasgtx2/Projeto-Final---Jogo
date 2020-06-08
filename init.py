@@ -50,6 +50,11 @@ def init_screen(screen):
             if event.type == pygame.QUIT:
                 state = QUIT
                 running = False
+            '''
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                x,y = pygame.mouse.get_pos()
+                if x
+            '''
 
             # Passa para o jogo quando o jogador apertar "espaço"
             if event.type == pygame.KEYDOWN:
