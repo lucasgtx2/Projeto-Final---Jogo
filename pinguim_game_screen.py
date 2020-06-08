@@ -53,7 +53,7 @@ def game_screen(window):
     # Estados do jogo:
     DONE = 0
     PLAYING = 1
-    DEAD = 2
+    END = 2
 
     state = PLAYING
 
@@ -65,7 +65,7 @@ def game_screen(window):
     pygame.mixer.music.play(loops=-1)
     
     # ===== Loop principal =====
-    while state != DONE or state != DEAD:
+    while state != DONE or state != END:
         clock.tick(FPS)
         
         # ----- Trata eventos

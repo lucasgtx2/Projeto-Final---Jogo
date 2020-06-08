@@ -39,12 +39,12 @@ def init_screen(screen):
                 # Verifica se jogador clicou em "Jogar":
                 if x >= 200 and x <= 500 and y >=300 and y <= 400:
                     state = GAME
+                    running = False
 
                 # Verifica se jogador clicou em "Instruções":
                 if x >= 200 and x <= 500 and y >=420 and y <= 500:
-                    state = INSTRUCOES
-                
-                running = False
+                    state = INSTRUCTIONS
+                    running = False
         
         screen.blit(background, background_rect)
 

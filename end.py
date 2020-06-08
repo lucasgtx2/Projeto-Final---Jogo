@@ -9,6 +9,9 @@ from config import IMG_DIR, BLACK, FPS, QUIT, WIDTH, HEIGHT, INSTRUCTIONS, INIT
 def end_screen(screen):
     assets = load_assets()
 
+    # Variável para o ajuste de velocidade
+    clock = pygame.time.Clock()
+
     background = assets[END]
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
     background_rect = background.get_rect()

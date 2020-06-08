@@ -11,6 +11,9 @@ def instrucoes_screen(screen):
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
     background_rect = background.get_rect()
 
+    # Variável para o ajuste de velocidade
+    clock = pygame.time.Clock()
+
     running = True
     
     keys_down = {}

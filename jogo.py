@@ -3,13 +3,13 @@
 import pygame
 import random
 import os
-from config import WIDTH, HEIGHT, INIT, GAME, QUIT, END
+from config import WIDTH, HEIGHT, INIT, GAME, QUIT, END, INSTRUCTIONS
 from init import init_screen
 from pinguim_game_screen import game_screen
 from codigo_para_os_sprites import *
 from assets import *
 from end import end_screen
-  
+from instrucoes import instrucoes_screen
 pygame.init() 
 pygame.mixer.init()
 
@@ -24,8 +24,14 @@ assets = load_assets()
 while state != QUIT:
 
     if state == INIT:
+        assets[VENTO_SND].stop()
         assets[MUSICA_INICIAL_SND].play()
         state = init_screen(window)
+
+    elif state == INSTRUCTIONS:
+        assets[MUSICA_INICIAL_SND].stop()
+        assets[MUSICA_INICIAL_SND].play()
+        state = instrucoes_screen(window)
 
     elif state == GAME:
         assets[MUSICA_INICIAL_SND].stop()
@@ -34,6 +40,7 @@ while state != QUIT:
 
     elif state == END:
         assets[MUSICA_JOGO_SND].stop()
+        assets[VENTO_SND].play()
         state = end_screen(window)
 
     else:
