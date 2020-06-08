@@ -8,25 +8,6 @@ from config import IMG_DIR, BLACK, FPS, GAME, QUIT, WIDTH, HEIGHT, INSTRUCTIONS,
 def init_screen(screen):
     assets = load_assets()
 
-    # Título do jogo:
-    titulo = assets[INIT_FONT].render('Pinguim Faminto', True, (0, 0, 0))
-    titulo_rect = titulo.get_rect()
-    titulo_rect.x = 50
-    titulo_rect.y = 100
-
-    # Botao para instrucoes:
-    inst = assets[INIT_FONT_2].render('Aperte seta para baixo para ver as instruções de jogo', True, (0, 0, 0))
-    inst_rect = inst.get_rect()
-    inst_rect.x = 50
-    inst_rect.y = 500
-    
-    # Botao para jogar:
-    jogar = assets[INIT_FONT_3].render('Aperte espaco para jogar', True, (0, 0, 0))
-    jogar_rect = jogar.get_rect()
-    jogar_rect.x = 200
-    jogar_rect.y = 400
-
-
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
     
@@ -66,9 +47,6 @@ def init_screen(screen):
                 running = False
         
         screen.blit(background, background_rect)
-        screen.blit(titulo, titulo_rect)
-        screen.blit(inst, inst_rect)
-        screen.blit(jogar, jogar_rect)
 
         #Atualiza o background
         pygame.display.flip()

@@ -1,11 +1,11 @@
 #tela final, apos perder. 
-import pygame
+import pygame 
 import random
 import os
 from assets import *    
-from config import IMG_DIR, BLACK, FPS, GAME, QUIT, WIDTH, HEIGHT, INSTRUCTIONS
-from pinguim_game_screen import score
-  
+from config import IMG_DIR, BLACK, FPS, QUIT, WIDTH, HEIGHT, INSTRUCTIONS, INIT
+#from pinguim_game_screen import * 
+
 def end_screen(screen):
     assets = load_assets()
 

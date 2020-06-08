@@ -74,7 +74,7 @@ def load_assets():
     assets[END] = pygame.image.load(os.path.join(IMG_DIR, 'end_screen.png')).convert()
     assets[END] = pygame.transform.scale(assets[INSTRUCOES], (WIDTH, HEIGHT))
 
-    assets[PINGUIMD_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pinguim deitado.jpg')).convert_alpha()
+    assets[PINGUIMD_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pinguim deitado.png')).convert_alpha()
     assets[PINGUIMD_IMG] = pygame.transform.scale(assets['pinguim_deitado_img'], (PINGUIMD_WIDTH, PINGUIMD_HEIGHT))
     assets[PINGUIMD_FLIP_IMG] = pygame.transform.flip(assets['pinguim_deitado_img'], True, False)
 
@@ -82,11 +82,11 @@ def load_assets():
     assets[PINGUIMP_IMG] = pygame.transform.scale(assets['pinguim_em_pe_img'], (PINGUIMP_WIDTH, PINGUIMP_HEIGHT))
     assets[PINGUIMP_FLIP_IMG] = pygame.transform.flip(assets['pinguim_em_pe_img'], True, False)
 
-    assets[PINGUIMPP_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pinguim poderoso em pe.jpg')).convert_alpha()
+    assets[PINGUIMPP_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pinguim poderoso em pe.png')).convert_alpha()
     assets[PINGUIMPP_IMG] = pygame.transform.scale(assets['pinguim_poderoso_em_pe_img'], (PINGUIMP_WIDTH, PINGUIMP_HEIGHT))
     assets[PINGUIMPP_FLIP_IMG] = pygame.transform.flip(assets['pinguim_poderoso_em_pe_img'], True, False)
 
-    assets[PINGUIMPD_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pinguim poderoso deitado.jpg')).convert_alpha()
+    assets[PINGUIMPD_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pinguim poderoso deitado.png')).convert_alpha()
     assets[PINGUIMPD_IMG] = pygame.transform.scale(assets['pinguim_poderoso_deitado_img'], (PINGUIMP_WIDTH, PINGUIMP_HEIGHT))
     assets[PINGUIMPD_FLIP_IMG] = pygame.transform.flip(assets['pinguim_deitado_img'], True, False)
 
@@ -104,11 +104,11 @@ def load_assets():
     assets[SALMAOD_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'salmao desenho.png')).convert_alpha()
     assets[SALMAOD_IMG] = pygame.transform.scale(assets['salmao_desenho_img'], (SALMAOD_WIDTH, SALMAOD_HEIGHT))
 
-    assets[BOMBA_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'bomba desenho.jpg')).convert_alpha()
+    assets[BOMBA_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'bomba desenho.png')).convert_alpha()
     assets[BOMBA_IMG] = pygame.transform.scale(assets['bomba_img'], (SALMAOD_WIDTH, SALMAOD_HEIGHT))
     
 
-    assets[PEDRA_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pedra desenho.jpg')).convert_alpha()
+    assets[PEDRA_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pedra desenho.png')).convert_alpha()
     assets[PEDRA_IMG] = pygame.transform.scale(assets['pedra_img'], (SALMAOD_WIDTH, SALMAOD_HEIGHT))
     
     #Carrega os sons:
