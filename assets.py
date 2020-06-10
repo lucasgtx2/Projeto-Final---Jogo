@@ -22,7 +22,8 @@ PINGUIMP_IMG = 'pinguim_em_pe_img'
 PINGUIMP_FLIP_IMG = 'pinguim_em_pe_flip_img'
 
 SALMAOC_IMG = 'salmao_carne_img'
-SALMAOD_IMG = 'salmao_desenho_img'
+
+SALMAOD_IMG = 'salmaozao_desenho_img'
 
 PINGUIMPD_IMG = 'pinguim_poderoso_deitado_img'
 PINGUIMPD_FLIP_IMG = 'pinguim_poderoso_deitado_flip_img'
@@ -41,7 +42,11 @@ PEDRA_IMG = 'pedra_img'
 
 # Define sons do jogo:
 EXPLOSAO_SND = 'explosao_arcade_snd'
-PEDRA_SND = 'pedra_snd'
+
+PINGUIM_GRITO_SND = 'pinguim_grito_snd'
+
+PINGUIM_MORREU_SND = 'pinguim_morreu_snd'
+
 VENTO_SND = 'vento_snd'
 MUSICA_JOGO_SND = 'musica_do_jogo_snd'
 MUSICA_INICIAL_SND = 'musica_inicial_snd'
@@ -61,7 +66,6 @@ SCORE_FONT_END = 'score_font_end'
 # Função principal que carrega os assets:
 def load_assets():
     assets = {}
-    
 
     #Carrega as imagens utilizadas:
     assets[BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR, 'fundo neve igloo.jpg')).convert()
@@ -104,33 +108,30 @@ def load_assets():
     assets[SALMAOC_IMG] = pygame.transform.scale(assets['salmao_carne_img'], (SALMAOC_WIDTH, SALMAOC_HEIGHT))
 
     assets[SALMAOD_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'salmao desenho.png')).convert_alpha()
-    assets[SALMAOD_IMG] = pygame.transform.scale(assets['salmao_desenho_img'], (SALMAOD_WIDTH, SALMAOD_HEIGHT))
+    assets[SALMAOD_IMG] = pygame.transform.scale(assets['salmaozao_desenho_img'], (SALMAOD_WIDTH, SALMAOD_HEIGHT))
 
     assets[BOMBA_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'bomba desenho.png')).convert_alpha()
     assets[BOMBA_IMG] = pygame.transform.scale(assets['bomba_img'], (SALMAOD_WIDTH, SALMAOD_HEIGHT))
     
-
     assets[PEDRA_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pedra desenho.png')).convert_alpha()
     assets[PEDRA_IMG] = pygame.transform.scale(assets['pedra_img'], (SALMAOD_WIDTH, SALMAOD_HEIGHT))
     
     #Carrega os sons:
     
-    #pygame.mixer.music.load(os.path.join(SND_DIR, 'som-pedra.wav'))
-    assets[PEDRA_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'som-pedra.wav'))
-    assets[PEDRA_SND].set_volume(0.2)
-
-    #pygame.mixer.music.load(os.path.join(SND_DIR, 'explosao-arcade.wav'))
     assets[EXPLOSAO_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'explosao-arcade.wav'))
-    assets[EXPLOSAO_SND].set_volume(0.2)
+    assets[EXPLOSAO_SND].set_volume(1.5)
     
-    
-    #pygame.mixer.music.load(os.path.join(SND_DIR, 'som-do-poder.wav'))
     assets[PODER_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'som-do-poder.wav'))
-    assets[PODER_SND].set_volume(0.2)
-    
-    #pygame.mixer.music.load(os.path.join(SND_DIR, 'mordida-som.wav'))
+    assets[PODER_SND].set_volume(1.5)
+   
+    assets[PINGUIM_GRITO_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'pinguim-gritou.wav'))
+    assets[PINGUIM_GRITO_SND].set_volume(1)
+
+    assets[PINGUIM_MORREU_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'pinguim-RIP.wav'))
+    assets[PINGUIM_MORREU_SND].set_volume(1)
+
     assets[MORDIDA_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'mordida-som.wav'))
-    assets[MORDIDA_SND].set_volume(0.2)
+    assets[MORDIDA_SND].set_volume(0.6)
 
     # Carrega as fontes:
     assets[INIT_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'fonte titulo.ttf'), 65)
@@ -143,4 +144,4 @@ def load_assets():
 
     assets[VIDA_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'PressStart2P.ttf'), 28)
     
-    return assets 
+    return assets  

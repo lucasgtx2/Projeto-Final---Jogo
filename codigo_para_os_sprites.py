@@ -5,8 +5,8 @@ from config import IMG_DIR, SND_DIR,PINGUIMD_WIDTH, PINGUIMD_HEIGHT, \
     PINGUIMP_WIDTH, PINGUIMP_HEIGHT, SALMAOC_WIDTH, SALMAOC_HEIGHT, SALMAOD_WIDTH, \
         SALMAOD_HEIGHT, BOMBA_PEDRA_WIDTH, BOMBA_PEDRA_HEIGHT, WIDTH, HEIGHT
 from assets import *
-from pinguim_game_screen import *
-  
+from pinguim_game_screen import * 
+
 class Pinguim(pygame.sprite.Sprite):
     def __init__(self, assets):
         # Construtor da classe mãe (Sprite).
@@ -154,8 +154,6 @@ class Bomba(pygame.sprite.Sprite):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
 
-        assets = load_assets()
-
         self.image = assets[BOMBA_IMG]
 
         self.rect = self.image.get_rect()
@@ -189,9 +187,7 @@ class Salmaozao(pygame.sprite.Sprite):
 
         self.groups = groups
 
-        # Só será possível cair um salmaozao a cada 40 -- 60s
-        self.ultima_queda = pygame.time.get_ticks()
-        self.queda_ticks = random.randint(20000, 30000)
+        self.assets = assets
 
     def update(self):
         # Atualizando a posição dO SALMAOZAO
@@ -204,18 +200,3 @@ class Salmaozao(pygame.sprite.Sprite):
         
         if self.rect.left < 0:
             self.speedx = -self.speedx
-         
-    def queda(self):
-        # Verifica se pode cair
-        now = pygame.time.get_ticks()
-        # Verifica quantos ticks se passaram desde a última queda.
-        elapsed_ticks = now - self.ultima_queda
-        
-        # Se já pode cair novamente...
-        if elapsed_ticks > self.queda_ticks:
-            # Marca o tick da nova imagem.
-            self.ultima_queda = now
-            # O novo salmaozao vai ser criado no topo da tela
-            novo_salmaozao = Salmaozao(self. groups, self.assets)
-            self.groups['all_sprites'].add(novo_salmaozao)
-            self.assets[PODER_SND].play() 

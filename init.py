@@ -51,4 +51,4 @@ def init_screen(window):
         #Atualiza o background
         pygame.display.update()
 
-    return state 
+    return state  

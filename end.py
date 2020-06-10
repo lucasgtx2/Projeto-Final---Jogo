@@ -65,4 +65,4 @@ def end_screen(window, score):
         window.blit(pontuacao, pontuacao_rect)
         pygame.display.update()  # Mostra o novo frame para o jogador
     
-    return state 
+    return state  

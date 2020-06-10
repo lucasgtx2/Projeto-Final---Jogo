@@ -46,6 +46,7 @@ while state != QUIT:
         state, score = game_screen(window)
 
     elif state == END:
+        assets[PINGUIM_MORREU_SND].play()
         pygame.mixer.music.stop()
         musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'vento.wav'))
         pygame.mixer.music.play()
@@ -56,4 +57,4 @@ while state != QUIT:
         state = QUIT
 
 # ===== Finalização =====  
-pygame.quit()  # Função do PyGame que finaliza os recursos utilizados  
+pygame.quit()  # Função do PyGame que finaliza os recursos utilizados   

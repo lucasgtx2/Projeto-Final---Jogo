@@ -42,4 +42,4 @@ INIT = 0
 INSTRUCTIONS = 1
 GAME = 2
 QUIT = 3
-END = 4 
+END = 4  

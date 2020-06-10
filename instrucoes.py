@@ -42,4 +42,4 @@ def instrucoes_screen(window):
         window.blit(background, background_rect)
         pygame.display.update()  # Mostra o novo frame para o jogador
 
-    return state 
+    return state  
