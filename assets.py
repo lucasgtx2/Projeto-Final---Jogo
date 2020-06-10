@@ -9,7 +9,7 @@ from config import IMG_DIR, SND_DIR, FNT_DIR, PINGUIMD_WIDTH, PINGUIMD_HEIGHT, \
 # Define imagens do jogo:   
 BACKGROUND = 'background_img'
 
-BACKGROUND_2 = 'background_img'
+BACKGROUND_2 = 'background_2_img'
 
 INIT_BACKGROUND = 'init_background_img'
 
@@ -73,8 +73,8 @@ def load_assets():
     assets[BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR, 'fundo neve igloo.jpg')).convert()
     assets[BACKGROUND] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
 
-    assets[BACKGROUND_2] = pygame.image.load(os.path.join(IMG_DIR, 'background_2.jpg')).convert()
-    assets[BACKGROUND_2] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
+    assets[BACKGROUND_2] = pygame.image.load(os.path.join(IMG_DIR, 'background_2.png')).convert()
+    assets[BACKGROUND_2] = pygame.transform.scale(assets[BACKGROUND_2], (WIDTH, HEIGHT))
 
     assets[INIT_BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR, 'init background.png')).convert()
     assets[INIT_BACKGROUND] = pygame.transform.scale(assets[INIT_BACKGROUND], (WIDTH, HEIGHT))
@@ -101,19 +101,11 @@ def load_assets():
     assets[PINGUIMPD_IMG] = pygame.transform.scale(assets['pinguim_poderoso_deitado_img'], (PINGUIMD_WIDTH, PINGUIMD_HEIGHT))
     assets[PINGUIMPD_FLIP_IMG] = pygame.transform.flip(assets['pinguim_poderoso_deitado_img'], True, False)
 
-    '''assets[PINGUIMGORDOP_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pinguim gordo em pe.jpg')).convert_alpha()
-    assets[PINGUIMGORDOP_IMG] = pygame.transform.scale(assets['pinguim_gordo_em_pe_img'], (PINGUIMP_WIDTH, PINGUIMP_HEIGHT))
-    assets[PINGUIMGORDOP_FLIP_IMG] = pygame.transform.flip(assets['pinguim_gordo_em_pe_img'], False, True)
-    ''' '''
-    assets[PINGUIMGORDOD_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pinguim gordo deitado.jpg')).convert_alpha()
-    assets[PINGUIMGORDOD_IMG] = pygame.transform.scale(assets['pinguim_gordo_deitado_img'], (PINGUIMP_WIDTH, PINGUIMP_HEIGHT))
-    assets[PINGUIMGORDOD_FLIP_IMG] = pygame.transform.flip(assets['pinguim_gordo_deitado_img'], False, True)
-    '''
     assets[SALMAOC_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'salmao carne.png')).convert_alpha()
     assets[SALMAOC_IMG] = pygame.transform.scale(assets['salmao_carne_img'], (SALMAOC_WIDTH, SALMAOC_HEIGHT))
 
     assets[SALMAOD_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'salmao desenho.png')).convert_alpha()
-    assets[SALMAOD_IMG] = pygame.transform.scale(assets['salmaozao_desenho_img'], (SALMAOD_WIDTH, SALMAOD_HEIGHT))
+    assets[SALMAOD_IMG] = pygame.transform.scale(assets[SALMAOD_IMG], (SALMAOD_WIDTH, SALMAOD_HEIGHT))
 
     assets[BOMBA_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'bomba desenho.png')).convert_alpha()
     assets[BOMBA_IMG] = pygame.transform.scale(assets['bomba_img'], (SALMAOD_WIDTH, SALMAOD_HEIGHT))
@@ -129,11 +121,11 @@ def load_assets():
     assets[PODER_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'som-do-poder.wav'))
     assets[PODER_SND].set_volume(1.5)
     '''
-    assets[PINGUIM_GRITO_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'pinguim-gritou.wav'))
-    assets[PINGUIM_GRITO_SND].set_volume(1)
+    assets[PINGUIM_GRITO_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'pinguim_gritou.wav'))
+    assets[PINGUIM_GRITO_SND].set_volume(0.5)
 
-    assets[PINGUIM_MORREU_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'pinguim-RIP.wav'))
-    assets[PINGUIM_MORREU_SND].set_volume(1)
+    assets[PINGUIM_MORREU_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'pinguim_RIP.wav'))
+    assets[PINGUIM_MORREU_SND].set_volume(0.5)
     '''
     assets[MORDIDA_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'mordida-som.wav'))
     assets[MORDIDA_SND].set_volume(0.6)
@@ -147,4 +139,7 @@ def load_assets():
 
     assets[VIDA_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'PressStart2P.ttf'), 28)
     
+    print(assets[SALMAOD_IMG])
+
     return assets  
+

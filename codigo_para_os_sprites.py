@@ -174,8 +174,9 @@ class Salmaozao(pygame.sprite.Sprite):
     def __init__(self, groups,  assets):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
-
+        print(assets)
         self.image = assets[SALMAOD_IMG]
+
         self.mask = pygame.mask.from_surface(self.image)
 
         self.rect = self.image.get_rect()
@@ -188,6 +189,7 @@ class Salmaozao(pygame.sprite.Sprite):
         self.groups = groups
 
         self.assets = assets
+    
 
     def update(self):
         # Atualizando a posição dO SALMAOZAO
@@ -200,3 +202,5 @@ class Salmaozao(pygame.sprite.Sprite):
         
         if self.rect.left < 0:
             self.speedx = -self.speedx
+    
+    

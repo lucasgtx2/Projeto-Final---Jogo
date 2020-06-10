@@ -50,7 +50,7 @@ while state != QUIT:
         pygame.mixer.music.stop()
         musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'vento.wav'))
         pygame.mixer.music.play()
-        #assets[VENTO_SND].mixer.music.play()
+        
         state = end_screen(window, score)
 
     else:

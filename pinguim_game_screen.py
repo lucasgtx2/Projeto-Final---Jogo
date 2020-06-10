@@ -155,7 +155,7 @@ def game_screen(window):
                 # Marca o tick da nova imagem.
                 ultimo_salmaozao = now_S
                 # A nova bomba vai ser criada no topo da tela
-                novo_salmaozao = Salmaozao(assets, groups)
+                novo_salmaozao = Salmaozao(groups, assets)
                 groups['all_sprites'].add(novo_salmaozao)
                 groups['all_salmao_inteiros'].add(novo_salmaozao)
                 salmaozao_ticks = random.randint(10000, 15000)
@@ -221,7 +221,7 @@ def game_screen(window):
         # ----- Gera saídas
         if score < 7500:
             window.blit(assets[BACKGROUND], (0, 0))
-        else:
+        if score >= 7500:
             window.blit(assets[BACKGROUND_2], (0, 0))
         
         # Desenhando todos os sprites:
