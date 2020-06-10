@@ -57,6 +57,12 @@ def game_screen(window):
 
     poder_ticks = 20000  #poder do pinguim dura 20 s
 
+    pedra_time1 = 30000
+
+    pedra_time2 = 55000
+
+    pedra_inicial =  pygame.time.get_ticks()
+
     pygame.mixer.music.play(loops=-1)
     
     # ===== Loop principal =====
@@ -127,7 +133,8 @@ def game_screen(window):
         all_sprites.update()
         
         if state == GAME:
-            # Verifica se pode cair
+
+            # Verifica se pode cair bomba
             now_B = pygame.time.get_ticks()
             # Verifica quantos ticks se passaram desde a última queda.
             elapsed_ticks_B = now_B - ultima_bomba
@@ -165,6 +172,19 @@ def game_screen(window):
             if elapsed_ticks_P > poder_ticks:
                 player.state1 = 'NORMAL'
 
+            # Verifica se pode criar nova pedra:
+            now_pedra = pygame.time.get_ticks()
+            elapsed_ticks_pedra = now_pedra - pedra_inicial
+            
+            if elapsed_ticks_pedra > pedra_time1:
+                all_pedras.add(pedra)
+                all_sprites.add(pedra)
+                pedra_inicial = now_pedra
+            
+            if elapsed_ticks_pedra > pedra_time2:
+                all_pedras.add(pedra)
+                all_sprites.add(pedra)
+
             # Verifica se o pinguim comeu pedaço de carne:
             comeu = pygame.sprite.spritecollide(player, all_carnes, True, pygame.sprite.collide_mask)
             for carne in comeu: # As chaves são os elementos do primeiro grupo (salmao) que colidiram com o penguim
@@ -194,7 +214,8 @@ def game_screen(window):
                 all_sprites.add(pedra)
                 all_pedras.add(pedra)
 
-                # Perdeu pontos e vida
+                # Perdeu pontos e vida se não estiver poderoso:
+                if not player.state1 == 'PODEROSO':
                 score -= 200
                 lives -= 1
                 
