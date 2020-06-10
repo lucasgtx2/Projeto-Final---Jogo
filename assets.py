@@ -135,8 +135,6 @@ def load_assets():
 
     # Carrega as fontes:
     assets[INIT_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'fonte titulo.ttf'), 65)
-    assets[INIT_FONT_2] = pygame.font.Font(os.path.join(FNT_DIR, 'fonte titulo.ttf'), 20)
-    assets[INIT_FONT_3] = pygame.font.Font(os.path.join(FNT_DIR, 'fonte titulo.ttf'), 20)
     
     assets[SCORE_FONT_END] = pygame.font.Font(os.path.join(FNT_DIR, 'score fonte.ttf'), 50)
     
