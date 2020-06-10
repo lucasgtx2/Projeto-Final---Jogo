@@ -1,6 +1,7 @@
 # Game screen
 import pygame
-from config import FPS, WIDTH, HEIGHT, BLACK, YELLOW, RED, END, QUIT
+import random
+from config import FPS, WIDTH, HEIGHT, BLACK, YELLOW, RED, END, QUIT, GAME
 from codigo_para_os_sprites import Pinguim, Carne, Salmaozao, Pedra, Bomba
 from assets import *
  
@@ -46,37 +47,35 @@ def game_screen(window):
         all_sprites.add(pedra)
 
     #Criando bomba:
-    bomba = Bomba(groups)
+    bomba = Bomba(assets, groups)
     all_bombas.add(bomba)
     all_sprites.add(bomba)
 
-    # Estados do jogo:
-    DONE = 0
-    PLAYING = 1
-    END = 2
-
-    state = PLAYING
+    state = GAME
 
     keys_down = {}
     
     score = 0
     lives = 3
-      
+    
+    # Só será possível cair uma bomba entre 20 e 30s
+    ultima_bomba = pygame.time.get_ticks()
+    bomba_ticks = random.randint(10000, 15000)
+
     pygame.mixer.music.play(loops=-1)
     
     # ===== Loop principal =====
-    while state != DONE or state != END:
+    while state != QUIT and state != END:
         clock.tick(FPS)
         
         # ----- Trata eventos
         for event in pygame.event.get():
             # ----- Verifica consequências
             if event.type == pygame.QUIT:
-                state = DONE
                 return QUIT
             
             # Só verifica o teclado se está no estado de jogo
-            if state == PLAYING:
+            if state == GAME:
                 # Verifica se apertou alguma tecla.
                 if event.type == pygame.KEYDOWN:
                     player.state2 = 'DESLIZANDO'
@@ -87,20 +86,20 @@ def game_screen(window):
                         player.state3 = 'ESQUERDA'
                         
                         if player.state1 == 'NORMAL':
-                            player.speedx -= 15
+                            player.speedx -= 7
                         
                         if player.state1 == 'PODEROSO':
-                            player.speedx -= 25 
+                            player.speedx -= 12
                         
                     if event.key == pygame.K_RIGHT:
                         
                         player.state3 = 'DIREITA'
                         
                         if player.state1 == 'NORMAL':
-                            player.speedx += 15
+                            player.speedx += 7
                         
                         if player.state1 == 'PODEROSO':
-                            player.speedx += 25
+                            player.speedx += 12
 
                 # Verifica se soltou alguma tecla.
                 if event.type == pygame.KEYUP:
@@ -109,79 +108,98 @@ def game_screen(window):
                     if event.key in keys_down and keys_down[event.key]:
                         if player.state1 == 'NORMAL':
                             if player.state3 == 'ESQUERDA': 
-                                player.speedx += 15 
+                                player.speedx += 7
                             if player.state3 == 'DIREITA':
-                                player.speedx -= 15
+                                player.speedx -= 7
                         if player.state1 == 'PODEROSO':
                             if player.state3 == 'ESQUERDA': 
-                                player.speedx += 25 
+                                player.speedx += 12
                             if player.state3 == 'DIREITA':
-                                player.speedx -= 25
+                                player.speedx -= 12
                 
+                #Corrige bug 
+                if player.state1 == 'NORMAL':
+                    if player.speedx < -7 or player.speedx > 7:
+                        player.speedx = 0
+                
+                if player.state1 == 'PODEROSO':
+                    if player.speedx < -12 or player.speedx > 12:
+                        player.speedx = 0
+
         # ----- Atualiza estado do jogo:
         
         # Atualizando a posição dos sprites:
         all_sprites.update()
         
-        if state == PLAYING:
+        if state == GAME:
+            # Verifica se pode cair
+            now = pygame.time.get_ticks()
+            # Verifica quantos ticks se passaram desde a última queda.
+            elapsed_ticks = now - ultima_bomba
+            
+            # Se já pode cair novamente...
+            if elapsed_ticks > bomba_ticks:
+                # Marca o tick da nova imagem.
+                ultima_bomba = now
+                # A nova bomba vai ser criada no topo da tela
+                nova_bomba = Bomba(assets, groups)
+                groups['all_sprites'].add(nova_bomba)
+                groups['all_bombas'].add(nova_bomba)
+                assets[EXPLOSAO_SND].play()
             
             # Verifica se o pinguim comeu pedaço de carne:
             comeu = pygame.sprite.spritecollide(player, all_carnes, True, pygame.sprite.collide_mask)
             for carne in comeu: # As chaves são os elementos do primeiro grupo (salmao) que colidiram com o penguim
                 # O salmao e destruido e precisa ser recriado
-                assets[MORDIDA_SND].stop()
                 assets[MORDIDA_SND].play()
                 carne = Carne(assets)
                 all_sprites.add(carne)
                 all_carnes.add(carne)
-                '''
-                # Verifica parar o som
-                carne.som = pygame.time.get_ticks()
-                carne.som_ticks = 1000
-                now = 
-                if 
-                '''
+            
             
                 # Ganhou pontos!
-                score += 100
-                if score % 10000 == 0:
+                if player.state1 == 'PODEROSO':
+                    score += 150
+                else:
+                    score += 100
+                
+                if score % 5000 == 0:
                     lives += 1
                 
 
             # Verifica se houve colisão entre pinguim e pedra
             hits = pygame.sprite.spritecollide(player, all_pedras, True, pygame.sprite.collide_mask)
             for pedra in hits:
-                # O salmao e destruido e precisa ser recriado
-                assets[PEDRA_SND].stop()
+                # A pedra e destruido e precisa ser recriado
                 assets[PEDRA_SND].play()
                 pedra = Pedra(assets)
                 all_sprites.add(pedra)
-                all_carnes.add(pedra)
+                all_pedras.add(pedra)
 
-                # Perdeu uma vida!
+                # Perdeu pontos e vida
+                score -= 200
                 lives -= 1
                 
             # Verifica se houve colisão entre pinguim e bomba
             hits = pygame.sprite.spritecollide(player, all_bombas, True, pygame.sprite.collide_mask)
             if len(hits) > 0:
-                assets[EXPLOSAO_SND].stop()
                 assets[EXPLOSAO_SND].play()
-                b = Bomba(groups)
+                b = Bomba(assets, groups)
                 all_sprites.add(b)
+                all_bombas.add(b)
                 player.kill()
-                lives = 0
                 state = END
+                lives = 0
 
             # Verifica se pinguim comeu o salmãozão:  
             poder = pygame.sprite.spritecollide(player, all_salmao_inteiros, True, pygame.sprite.collide_mask)
             if len(poder) == 1:
-                assets[PODER_SND].stop()
-                assets[PODER_SND].play()
-                salmao_inteiro.kill()
                 all_sprites.remove(salmao_inteiro)
-                salmao_inteiro = Salmaozao(groups, assets)
                 all_sprites.add(salmao_inteiro)
+                all_salmao_inteiros.add(salmao_inteiro)
                 player.state1 = 'PODEROSO'
+                player.speedx = 0
+
         
         if lives == 0:
             state = END
@@ -200,10 +218,10 @@ def game_screen(window):
 
         # Desenhando as vidas:
         text_rect = text_surface.get_rect()
-        text_surface = assets[SCORE_FONT].render(chr(9829) * lives, True, RED)
+        text_surface = assets[VIDA_FONT].render(chr(9829) * lives, True, RED)
         text_rect.bottomleft = (10, HEIGHT - 10)
         window.blit(text_surface, text_rect)
 
         pygame.display.update()  # Mostra o novo frame para o jogador
 
-    return state, score
+    return state, score 

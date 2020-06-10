@@ -5,7 +5,7 @@ import os
 from assets import *    
 from config import IMG_DIR, BLACK, FPS, GAME, QUIT, WIDTH, HEIGHT, INSTRUCTIONS, END 
  
-def init_screen(screen):
+def init_screen(window):
     assets = load_assets()
 
     # Variável para o ajuste de velocidade
@@ -46,9 +46,9 @@ def init_screen(screen):
                     state = INSTRUCTIONS
                     running = False
         
-        screen.blit(background, background_rect)
+        window.blit(background, background_rect)
 
         #Atualiza o background
-        pygame.display.flip()
+        pygame.display.update()
 
-    return state
+    return state 

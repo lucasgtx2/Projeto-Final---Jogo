@@ -10,6 +10,7 @@ from codigo_para_os_sprites import *
 from assets import *
 from end import end_screen
 from instrucoes import instrucoes_screen
+
 pygame.init() 
 pygame.mixer.init()
 
@@ -24,27 +25,35 @@ assets = load_assets()
 while state != QUIT:
 
     if state == INIT:
-        assets[VENTO_SND].stop()
-        assets[MUSICA_INICIAL_SND].play()
+        pygame.mixer.music.stop()
+        musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'musica-tela-inicial.wav'))
+        pygame.mixer.music.play()
+
         state = init_screen(window)
 
     elif state == INSTRUCTIONS:
-        assets[MUSICA_INICIAL_SND].stop()
-        assets[MUSICA_INICIAL_SND].play()
+        pygame.mixer.music.stop()
+        musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'musica-tela-inicial.wav'))
+        pygame.mixer.music.play()
+        
         state = instrucoes_screen(window)
 
     elif state == GAME:
-        assets[MUSICA_INICIAL_SND].stop()
-        assets[MUSICA_JOGO_SND].play()
-        state = game_screen(window)
+        pygame.mixer.music.stop()
+        musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'musica-de-fundo.wav'))
+        pygame.mixer.music.play()
+
+        state, score = game_screen(window)
 
     elif state == END:
-        assets[MUSICA_JOGO_SND].stop()
-        assets[VENTO_SND].play()
-        state = end_screen(window)
+        pygame.mixer.music.stop()
+        musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'vento.wav'))
+        pygame.mixer.music.play()
+        #assets[VENTO_SND].mixer.music.play()
+        state = end_screen(window, score)
 
     else:
         state = QUIT
 
 # ===== Finalização =====  
-pygame.quit()  # Função do PyGame que finaliza os recursos utilizados
+pygame.quit()  # Função do PyGame que finaliza os recursos utilizados  

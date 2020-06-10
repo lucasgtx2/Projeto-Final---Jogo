@@ -3,31 +3,24 @@ import pygame
 import random
 import os
 from assets import *    
-from config import IMG_DIR, BLACK, FPS, QUIT, WIDTH, HEIGHT, INSTRUCTIONS, INIT
-#from pinguim_game_screen import * 
+from config import IMG_DIR, BLACK, FPS, QUIT, WIDTH, HEIGHT, INSTRUCTIONS, INIT, GAME 
+from pinguim_game_screen import * 
 
-def end_screen(screen):
+def end_screen(window, score):
     assets = load_assets()
 
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
 
-    background = assets[END]
-    background = pygame.transform.scale(background, (WIDTH, HEIGHT))
-    background_rect = background.get_rect()
-
-    # Botao para jogar:
-    jogar = assets[INIT_FONT_3].render('Aperte espaco para jogar novamente', True, (0, 0, 0))
-    jogar_rect = jogar.get_rect()
-    jogar_rect.x = 50
-    jogar_rect.y = 400
+    game_over = assets[END]
+    game_over = pygame.transform.scale(game_over, (WIDTH, HEIGHT))
+    game_over_rect = game_over.get_rect()
 
     # Aparece pontuacao:
-    pontuacao = assets[INIT_FONT_4].render('Score: {}'.format(score), True, (255, 0, 0))
+    pontuacao = assets[SCORE_FONT_END].render('{}'.format(score), True, YELLOW)
     pontuacao_rect = pontuacao.get_rect()
-    pontuacao_rect.x = 50
-    pontuacao_rect.y = 400
-
+    pontuacao_rect.x = WIDTH/2 - 120
+    pontuacao_rect.y = 165
     running = True
     
     keys_down = {}
@@ -68,7 +61,8 @@ def end_screen(screen):
                     state = INIT
                     running = False
 
-        screen.blit(jogar, jogar_rect)
-        screen.blit(pontuacao, pontuacao_rect)
+        window.blit(game_over, game_over_rect)
+        window.blit(pontuacao, pontuacao_rect)
+        pygame.display.update()  # Mostra o novo frame para o jogador
     
-    return state
+    return state 

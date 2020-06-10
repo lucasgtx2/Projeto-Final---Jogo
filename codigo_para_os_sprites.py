@@ -88,7 +88,7 @@ class Pinguim(pygame.sprite.Sprite):
         
         # Se já acabou o tempo do poder:
         if elapsed_ticks > self.poder_ticks:
-           self.state1 = 'NORMAL'    
+           self.state1 = 'NORMAL'   
 
 class Carne(pygame.sprite.Sprite):
     def __init__(self, assets):
@@ -102,10 +102,10 @@ class Carne(pygame.sprite.Sprite):
         self.rect.x = random.randint(0, WIDTH - SALMAOC_WIDTH)
         self.rect.y = random.randint(-100, -SALMAOC_HEIGHT)
 
-        self.speedy = random.randint(2, 9)
+        self.speedy = random.randint(3, 5)
 
     def update(self):
-        # Atualizando a posição do meteoro
+        # Atualizando a posição do pinguim
         self.rect.y += self.speedy
         
         # Se a carne passar do final da tela, volta para cima e sorteia
@@ -113,7 +113,7 @@ class Carne(pygame.sprite.Sprite):
         if self.rect.top > HEIGHT or self.rect.right < 0 or self.rect.left > WIDTH:
             self.rect.x = random.randint(0, WIDTH - SALMAOC_WIDTH)
             self.rect.y = random.randint(-100, -SALMAOC_HEIGHT)
-            self.speedy = random.randint(4, 7)
+            self.speedy = random.randint(3, 5)
 
 class Pedra(pygame.sprite.Sprite):
     def __init__(self, assets):
@@ -127,8 +127,8 @@ class Pedra(pygame.sprite.Sprite):
         self.rect.x = random.randint(0, WIDTH - BOMBA_PEDRA_WIDTH)
         self.rect.y = random.randint(-100, -BOMBA_PEDRA_HEIGHT)
 
-        self.speedx = random.randint(-3, 3)
-        self.speedy = random.randint(7, 10)
+        self.speedx = random.randint(-2, 2)
+        self.speedy = random.randint(3, 5)
 
     def update(self):
         # Atualizando a posição da pedra
@@ -139,15 +139,18 @@ class Pedra(pygame.sprite.Sprite):
         if self.rect.right > WIDTH:
             self.speedx = -self.speedx
         
+        if self.rect.left < 0:
+            self.speedx = -self.speedx
+        
         # Se a carne passar do final da tela, volta para cima e sorteia
         # novas posições e velocidades
         if self.rect.top > HEIGHT or self.rect.right < 0 or self.rect.left > WIDTH:
             self.rect.x = random.randint(0, WIDTH - BOMBA_PEDRA_WIDTH)
             self.rect.y = random.randint(-100, - BOMBA_PEDRA_HEIGHT)
-            self.speedy = random.randint(7, 15)
+            self.speedy = random.randint(3, 7)
 
 class Bomba(pygame.sprite.Sprite):
-    def __init__(self, groups):
+    def __init__(self, assets, groups):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
 
@@ -159,59 +162,47 @@ class Bomba(pygame.sprite.Sprite):
         self.rect.x = random.randint(0, WIDTH - BOMBA_PEDRA_WIDTH)
         self.rect.y = random.randint(-100, - BOMBA_PEDRA_HEIGHT)
 
-        self.speedy = 10
+        self.speedy = 5
 
-        self.groups
+        self.groups = groups
 
-        # Só será possível cair uma bomba entre 20 e 30s
-        self.ultima_queda = pygame.time.get_ticks()
-        self.queda_ticks = random.randint(20000, 30000)
+        self.assets = assets
 
     def update(self):
         # Atualizando a posição da bomba
         self.rect.y += self.speedy
-
-        # Verifica se pode cair
-        now = pygame.time.get_ticks()
-        # Verifica quantos ticks se passaram desde a última queda.
-        elapsed_ticks = now - self.ultima_queda
-        
-        # Se já pode cair novamente...
-        if elapsed_ticks > self.queda_ticks:
-            # Marca o tick da nova imagem.
-            self.ultima_queda = now
-            # A nova bomba vai ser criada no topo da tela
-            nova_bomba = Bomba(self.groups)
-            self.groups['all_sprites'].add(nova_bomba)
-            self.groups['all_bombas'].add(nova_bomba)
-            self.assets[EXPLOSAO_SND].play()
 
 class Salmaozao(pygame.sprite.Sprite):
     def __init__(self, groups,  assets):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = assets[BOMBA_IMG]
+        self.image = assets[SALMAOD_IMG]
         self.mask = pygame.mask.from_surface(self.image)
 
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(0, WIDTH - SALMAOD_WIDTH)
         self.rect.y = random.randint(-100, -  SALMAOD_HEIGHT)
 
-        self.speedx = random.randint(-3, 3)
-        self.speedy = 10
+        self.speedx = random.randint(-2, 2)
+        self.speedy = 5
+
+        self.groups = groups
 
         # Só será possível cair um salmaozao a cada 40 -- 60s
         self.ultima_queda = pygame.time.get_ticks()
-        self.queda_ticks = random.randint(40000, 60000)
+        self.queda_ticks = random.randint(20000, 30000)
 
     def update(self):
         # Atualizando a posição dO SALMAOZAO
         self.rect.x += self.speedx
         self.rect.y += self.speedy
 
-        # Se a pedra bater na parede, ricocheteia com a velocidade contrária em x
+        # Se o salmao bater na parede, ricocheteia com a velocidade contrária em x
         if self.rect.right > WIDTH:
+            self.speedx = -self.speedx
+        
+        if self.rect.left < 0:
             self.speedx = -self.speedx
          
     def queda(self):
@@ -226,5 +217,5 @@ class Salmaozao(pygame.sprite.Sprite):
             self.ultima_queda = now
             # O novo salmaozao vai ser criado no topo da tela
             novo_salmaozao = Salmaozao(self. groups, self.assets)
-            groups['all_sprites'].add(novo_salmaozao)
-            self.assets[PODER_SND].play()
+            self.groups['all_sprites'].add(novo_salmaozao)
+            self.assets[PODER_SND].play() 

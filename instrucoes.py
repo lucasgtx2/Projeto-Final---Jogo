@@ -4,7 +4,7 @@ import os
 from assets import * 
 from config import FPS, WIDTH, HEIGHT, INIT, QUIT 
  
-def instrucoes_screen(screen):
+def instrucoes_screen(window):
     assets = load_assets()
 
     background = assets[INSTRUCOES]
@@ -35,10 +35,11 @@ def instrucoes_screen(screen):
                 x,y = pygame.mouse.get_pos()
                 
                 # Verifica se jogador clicou em "Voltar":
-                if x >= 550 and x <= 650 and y >= 450 and y <= 550:
+                if x >= 500 and x <= 650 and y >= 550 and y <= 600:
                     state = INIT
                     running = False
         
-        screen.blit(background, background_rect)
+        window.blit(background, background_rect)
+        pygame.display.update()  # Mostra o novo frame para o jogador
 
-    return state
+    return state 
