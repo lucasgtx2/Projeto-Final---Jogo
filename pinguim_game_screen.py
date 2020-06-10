@@ -216,8 +216,8 @@ def game_screen(window):
 
                 # Perdeu pontos e vida se não estiver poderoso:
                 if not player.state1 == 'PODEROSO':
-                score -= 200
-                lives -= 1
+                    score -= 200
+                    lives -= 1
                 
             # Verifica se houve colisão entre pinguim e bomba
             hits = pygame.sprite.spritecollide(player, all_bombas, True, pygame.sprite.collide_mask)
