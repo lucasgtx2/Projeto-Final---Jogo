@@ -15,7 +15,6 @@ class Pinguim(pygame.sprite.Sprite):
         # Diferentes imagens do pinguim:
         pinguins = [assets[PINGUIMP_IMG], assets[PINGUIMP_FLIP_IMG], assets[PINGUIMD_IMG], assets[PINGUIMD_FLIP_IMG], \
             assets[PINGUIMPP_IMG], assets[PINGUIMPP_FLIP_IMG], assets[PINGUIMPD_IMG], assets[PINGUIMPD_FLIP_IMG]]
-                #assets[PINGUIMGORDOP_IMG], assets[PINGUIMGORDOP_FLIP_IMG], assets[PINGUIMGORDOD_IMG], assets[PINGUIMGORDOD_FLIP_IMG]]
 
         # Estrutura para organizar imagens dos pinguins conforme estados:
         self.images = {
@@ -59,10 +58,6 @@ class Pinguim(pygame.sprite.Sprite):
 
         self.assets = assets
 
-        # Calcula tempo para limitar a frequência de poder: 
-        self.ultimo_poder = pygame.time.get_ticks()
-        self.poder_ticks = random.randint(20000, 30000)
-
     def update(self):
         # Atualização da posição do pinguim
         self.rect.x += self.speedx
@@ -81,14 +76,6 @@ class Pinguim(pygame.sprite.Sprite):
             self.rect.right = WIDTH
         if self.rect.left < 0:
             self.rect.left = 0  
-        
-
-        now = pygame.time.get_ticks()
-        elapsed_ticks = now - self.ultimo_poder
-        
-        # Se já acabou o tempo do poder:
-        if elapsed_ticks > self.poder_ticks:
-           self.state1 = 'NORMAL'   
 
 class Carne(pygame.sprite.Sprite):
     def __init__(self, assets):
@@ -192,7 +179,7 @@ class Salmaozao(pygame.sprite.Sprite):
     
 
     def update(self):
-        # Atualizando a posição dO SALMAOZAO
+        # Atualizando a posição do SALMAOZAO
         self.rect.x += self.speedx
         self.rect.y += self.speedy
 
@@ -202,5 +189,3 @@ class Salmaozao(pygame.sprite.Sprite):
         
         if self.rect.left < 0:
             self.speedx = -self.speedx
-    
-    

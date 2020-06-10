@@ -41,11 +41,6 @@ def game_screen(window):
         all_pedras.add(pedra)
         all_sprites.add(pedra)
 
-    #Criando bomba:
-    #bomba = Bomba(assets, groups)
-    #all_bombas.add(bomba)
-    #all_sprites.add(bomba)
-
     state = GAME
 
     keys_down = {}
@@ -59,6 +54,8 @@ def game_screen(window):
 
     ultimo_salmaozao = pygame.time.get_ticks()
     salmaozao_ticks = random.randint(20000, 30000)
+
+    poder_ticks = 20000  #poder do pinguim dura 20 s
 
     pygame.mixer.music.play(loops=-1)
     
@@ -158,7 +155,15 @@ def game_screen(window):
                 novo_salmaozao = Salmaozao(groups, assets)
                 groups['all_sprites'].add(novo_salmaozao)
                 groups['all_salmao_inteiros'].add(novo_salmaozao)
-                salmaozao_ticks = random.randint(10000, 15000)
+                salmaozao_ticks = random.randint(20000, 30000)
+            
+            #Verifica se precisa voltar pinguim ao normal:
+            now_P = pygame.time.get_ticks()
+            # Verifica quantos ticks se passaram desde que começou o poder:
+            elapsed_ticks_P = now_P - ultimo_salmaozao
+
+            if elapsed_ticks_P > poder_ticks:
+                player.state1 = 'NORMAL'
 
             # Verifica se o pinguim comeu pedaço de carne:
             comeu = pygame.sprite.spritecollide(player, all_carnes, True, pygame.sprite.collide_mask)
@@ -207,13 +212,12 @@ def game_screen(window):
             # Verifica se pinguim comeu o salmãozão:  
             poder = pygame.sprite.spritecollide(player, all_salmao_inteiros, True, pygame.sprite.collide_mask)
             if len(poder) == 1:
-                all_sprites.remove(salmao_inteiro)
-                salmao_inteiro = Salmaozao(groups, assets)
-                all_sprites.add(salmao_inteiro)
-                all_salmao_inteiros.add(salmao_inteiro)
+                all_sprites.remove(novo_salmaozao)
+                all_salmao_inteiros.remove(novo_salmaozao)
                 player.state1 = 'PODEROSO'
                 player.speedx = 0
 
+                ultimo_poder = pygame.time.get_ticks()
         
         if lives == 0:
             state = END

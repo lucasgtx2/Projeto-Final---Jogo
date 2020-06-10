@@ -116,19 +116,19 @@ def load_assets():
     #Carrega os sons:
     
     assets[EXPLOSAO_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'explosao-arcade.wav'))
-    assets[EXPLOSAO_SND].set_volume(1.5)
+    assets[EXPLOSAO_SND].set_volume(3)
     
     assets[PODER_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'som-do-poder.wav'))
-    assets[PODER_SND].set_volume(1.5)
-    '''
-    assets[PINGUIM_GRITO_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'pinguim_gritou.wav'))
-    assets[PINGUIM_GRITO_SND].set_volume(0.5)
+    assets[PODER_SND].set_volume(3)
+    
+    assets[PINGUIM_GRITO_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'pinguim_gritou.ogg'))
+    assets[PINGUIM_GRITO_SND].set_volume(3)
 
-    assets[PINGUIM_MORREU_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'pinguim_RIP.wav'))
-    assets[PINGUIM_MORREU_SND].set_volume(0.5)
-    '''
+    assets[PINGUIM_MORREU_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'pinguim_RIP.ogg'))
+    assets[PINGUIM_MORREU_SND].set_volume(2)
+    
     assets[MORDIDA_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'mordida-som.wav'))
-    assets[MORDIDA_SND].set_volume(0.6)
+    assets[MORDIDA_SND].set_volume(1)
 
     # Carrega as fontes:
     assets[INIT_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'fonte titulo.ttf'), 65)
