@@ -9,6 +9,8 @@ from config import IMG_DIR, SND_DIR, FNT_DIR, PINGUIMD_WIDTH, PINGUIMD_HEIGHT, \
 # Define imagens do jogo:   
 BACKGROUND = 'background_img'
 
+BACKGROUND_2 = 'background_img'
+
 INIT_BACKGROUND = 'init_background_img'
 
 INSTRUCOES = 'instrucoes_img'
@@ -71,6 +73,9 @@ def load_assets():
     assets[BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR, 'fundo neve igloo.jpg')).convert()
     assets[BACKGROUND] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
 
+    assets[BACKGROUND_2] = pygame.image.load(os.path.join(IMG_DIR, 'background_2.jpg')).convert()
+    assets[BACKGROUND_2] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
+
     assets[INIT_BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR, 'init background.png')).convert()
     assets[INIT_BACKGROUND] = pygame.transform.scale(assets[INIT_BACKGROUND], (WIDTH, HEIGHT))
 
@@ -123,13 +128,13 @@ def load_assets():
     
     assets[PODER_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'som-do-poder.wav'))
     assets[PODER_SND].set_volume(1.5)
-   
+    '''
     assets[PINGUIM_GRITO_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'pinguim-gritou.wav'))
     assets[PINGUIM_GRITO_SND].set_volume(1)
 
     assets[PINGUIM_MORREU_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'pinguim-RIP.wav'))
     assets[PINGUIM_MORREU_SND].set_volume(1)
-
+    '''
     assets[MORDIDA_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'mordida-som.wav'))
     assets[MORDIDA_SND].set_volume(0.6)
 

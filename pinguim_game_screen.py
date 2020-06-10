@@ -219,7 +219,10 @@ def game_screen(window):
             state = END
 
         # ----- Gera saídas
-        window.blit(assets[BACKGROUND], (0, 0))
+        if score < 7500:
+            window.blit(assets[BACKGROUND], (0, 0))
+        else:
+            window.blit(assets[BACKGROUND_2], (0, 0))
         
         # Desenhando todos os sprites:
         all_sprites.draw(window)
