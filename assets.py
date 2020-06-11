@@ -42,6 +42,13 @@ PINGUIMGORDOD_FLIP_IMG = 'pinguim_gordo_deitado_flip_img'
 BOMBA_IMG = 'bomba_img'
 PEDRA_IMG = 'pedra_img'
 
+GLOBAL_WARMING_1 = 'global_warming_1_img'
+GLOBAL_WARMING_2 = 'global_warming_2_img'
+GLOBAL_WARMING_3 = 'global_warming_3_img'
+GLOBAL_WARMING_4 = 'global_warming_4_img'
+GLOBAL_WARMING_5 = 'global_warming_5_img'
+GLOBAL_WARMING_6 = 'global_warming_6_img'
+
 # Define sons do jogo:
 EXPLOSAO_SND = 'explosao_arcade_snd'
 
@@ -112,7 +119,25 @@ def load_assets():
     
     assets[PEDRA_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pedra desenho.png')).convert_alpha()
     assets[PEDRA_IMG] = pygame.transform.scale(assets['pedra_img'], (SALMAOD_WIDTH, SALMAOD_HEIGHT))
-    
+
+    assets[GLOBAL_WARMING_1] = pygame.image.load(os.path.join(IMG_DIR, 'AQUECIMENTO_GLOBAL_1.jpg')).convert_alpha()
+    assets[GLOBAL_WARMING_1] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
+
+    assets[GLOBAL_WARMING_2] = pygame.image.load(os.path.join(IMG_DIR, 'AQUECIMENTO_GLOBAL_2.jpg')).convert_alpha()
+    assets[GLOBAL_WARMING_2] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
+
+    assets[GLOBAL_WARMING_3] = pygame.image.load(os.path.join(IMG_DIR, 'AQUECIMENTO_GLOBAL_3.jpg')).convert_alpha()
+    assets[GLOBAL_WARMING_3] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
+
+    assets[GLOBAL_WARMING_4] = pygame.image.load(os.path.join(IMG_DIR, 'AQUECIMENTO_GLOBAL_4.jpg')).convert_alpha()
+    assets[GLOBAL_WARMING_4] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
+
+    assets[GLOBAL_WARMING_5] = pygame.image.load(os.path.join(IMG_DIR, 'AQUECIMENTO_GLOBAL_5.jpg')).convert_alpha()
+    assets[GLOBAL_WARMING_5] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
+
+    assets[GLOBAL_WARMING_6] = pygame.image.load(os.path.join(IMG_DIR, 'AQUECIMENTO_GLOBAL_6.jpg')).convert_alpha()
+    assets[GLOBAL_WARMING_6] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
+
     #Carrega os sons:
     
     assets[EXPLOSAO_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'explosao-arcade.wav'))
