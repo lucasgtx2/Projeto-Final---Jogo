@@ -3,13 +3,14 @@
 import pygame
 import random
 import os
-from config import WIDTH, HEIGHT, INIT, GAME, QUIT, END, INSTRUCTIONS
+from config import WIDTH, HEIGHT, INIT, GAME, QUIT, END, INSTRUCTIONS, ANTARTICA
 from init import init_screen
 from pinguim_game_screen import game_screen
 from codigo_para_os_sprites import *
 from assets import *
 from end import end_screen
 from instrucoes import instrucoes_screen
+from antartica import antartica_screen
  
 pygame.init() 
 pygame.mixer.init()
@@ -22,6 +23,7 @@ pygame.display.set_caption('Pinguim Faminto')
 state = INIT
 assets = load_assets()
 
+i = 0
 while state != QUIT:
 
     if state == INIT:
@@ -48,14 +50,14 @@ while state != QUIT:
 
         state, score = game_screen(window)
     
-    elif state == ANTARTICA:
+    elif state == ANTARTICA and i==0:
         pygame.mixer.music.stop()
         musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'violao-antartica.wav'))
         pygame.mixer.music.play()
 
-        state = antartica_screen()
+        state = antartica_screen(window)
 
-    elif state == END:
+    elif state == END or state == ANTARTICA:
         assets[PINGUIM_MORREU_SND].play()
         pygame.mixer.music.stop()
         musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'vento.wav'))
@@ -63,6 +65,8 @@ while state != QUIT:
         pygame.mixer.music.play()
         
         state = end_screen(window, score)
+
+        i += 1
 
     else:
         state = QUIT

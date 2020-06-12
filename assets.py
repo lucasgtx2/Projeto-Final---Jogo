@@ -66,9 +66,9 @@ MORDIDA_SND = 'mordida_snd'
 SCORE_FONT = 'score_font'
 
 VIDA_FONT = 'vida_font'
-INIT_FONT = 'init_font'
-INIT_FONT_2 = 'init_font_2'
-INIT_FONT_3 = 'init_font_3'
+
+ANTARTICA_FONT = 'antartica_font'
+
 SCORE_FONT_END = 'score_font_end'
 
 
@@ -156,7 +156,7 @@ def load_assets():
     assets[MORDIDA_SND].set_volume(1)
 
     # Carrega as fontes:
-    assets[INIT_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'fonte titulo.ttf'), 65)
+    assets[ANTARTICA_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'fonte titulo.ttf'), 65)
     
     assets[SCORE_FONT_END] = pygame.font.Font(os.path.join(FNT_DIR, 'score fonte.ttf'), 50)
     
