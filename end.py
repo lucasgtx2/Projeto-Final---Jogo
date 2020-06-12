@@ -3,7 +3,7 @@ import pygame
 import random
 import os
 from assets import *    
-from config import IMG_DIR, BLACK, FPS, QUIT, WIDTH, HEIGHT, INSTRUCTIONS, INIT, GAME 
+from config import IMG_DIR, BLACK, FPS, QUIT, WIDTH, HEIGHT, INSTRUCTIONS, INIT, GAME
 from pinguim_game_screen import * 
  
 def end_screen(window, score):
@@ -12,7 +12,7 @@ def end_screen(window, score):
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
 
-    game_over = assets[END]
+    game_over = assets[END_IMG]
     game_over = pygame.transform.scale(game_over, (WIDTH, HEIGHT))
     game_over_rect = game_over.get_rect()
 

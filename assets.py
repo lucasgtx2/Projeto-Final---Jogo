@@ -13,9 +13,9 @@ BACKGROUND_2 = 'background_2_img'
   
 INIT_BACKGROUND = 'init_background_img'
 
-INSTRUCOES = 'instrucoes_img'
+INSTRUCOES_IMG = 'instrucoes_img'
 
-END = 'end_img'
+END_IMG = 'end_img'
 
 PINGUIMD_IMG = 'pinguim_deitado_img'
 PINGUIMD_FLIP_IMG = 'pinguim_deitado_flip_img'
@@ -46,8 +46,6 @@ GLOBAL_WARMING_1 = 'global_warming_1_img'
 GLOBAL_WARMING_2 = 'global_warming_2_img'
 GLOBAL_WARMING_3 = 'global_warming_3_img'
 GLOBAL_WARMING_4 = 'global_warming_4_img'
-GLOBAL_WARMING_5 = 'global_warming_5_img'
-GLOBAL_WARMING_6 = 'global_warming_6_img'
 
 # Define sons do jogo:
 EXPLOSAO_SND = 'explosao_arcade_snd'
@@ -67,10 +65,9 @@ SCORE_FONT = 'score_font'
 
 VIDA_FONT = 'vida_font'
 
-ANTARTICA_FONT = 'antartica_font'
+ANTARTIDA_FONT = 'antartida_font'
 
 SCORE_FONT_END = 'score_font_end'
-
 
 # Função principal que carrega os assets:
 def load_assets():
@@ -86,11 +83,11 @@ def load_assets():
     assets[INIT_BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR, 'init background.png')).convert()
     assets[INIT_BACKGROUND] = pygame.transform.scale(assets[INIT_BACKGROUND], (WIDTH, HEIGHT))
 
-    assets[INSTRUCOES] = pygame.image.load(os.path.join(IMG_DIR, 'instrucoes.png')).convert()
-    assets[INSTRUCOES] = pygame.transform.scale(assets[INSTRUCOES], (WIDTH, HEIGHT))
+    assets[INSTRUCOES_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'instrucoes.png')).convert()
+    assets[INSTRUCOES_IMG] = pygame.transform.scale(assets[INSTRUCOES_IMG], (WIDTH, HEIGHT))
 
-    assets[END] = pygame.image.load(os.path.join(IMG_DIR, 'end_screen.png')).convert()
-    assets[END] = pygame.transform.scale(assets[END], (WIDTH, HEIGHT))
+    assets[END_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'end_screen.png')).convert()
+    assets[END_IMG] = pygame.transform.scale(assets[END_IMG], (WIDTH, HEIGHT))
 
     assets[PINGUIMD_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'pinguim deitado.png')).convert_alpha()
     assets[PINGUIMD_IMG] = pygame.transform.scale(assets['pinguim_deitado_img'], (PINGUIMD_WIDTH, PINGUIMD_HEIGHT))
@@ -121,22 +118,16 @@ def load_assets():
     assets[PEDRA_IMG] = pygame.transform.scale(assets['pedra_img'], (SALMAOD_WIDTH, SALMAOD_HEIGHT))
 
     assets[GLOBAL_WARMING_1] = pygame.image.load(os.path.join(IMG_DIR, 'AQUECIMENTO_GLOBAL_1.jpg')).convert_alpha()
-    assets[GLOBAL_WARMING_1] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
+    assets[GLOBAL_WARMING_1] = pygame.transform.scale(assets[GLOBAL_WARMING_1], (WIDTH, HEIGHT))
 
     assets[GLOBAL_WARMING_2] = pygame.image.load(os.path.join(IMG_DIR, 'AQUECIMENTO_GLOBAL_2.jpg')).convert_alpha()
-    assets[GLOBAL_WARMING_2] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
+    assets[GLOBAL_WARMING_2] = pygame.transform.scale(assets[GLOBAL_WARMING_2], (WIDTH, HEIGHT))
 
     assets[GLOBAL_WARMING_3] = pygame.image.load(os.path.join(IMG_DIR, 'AQUECIMENTO_GLOBAL_3.jpg')).convert_alpha()
-    assets[GLOBAL_WARMING_3] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
+    assets[GLOBAL_WARMING_3] = pygame.transform.scale(assets[GLOBAL_WARMING_3], (WIDTH, HEIGHT))
 
     assets[GLOBAL_WARMING_4] = pygame.image.load(os.path.join(IMG_DIR, 'AQUECIMENTO_GLOBAL_4.jpg')).convert_alpha()
-    assets[GLOBAL_WARMING_4] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
-
-    assets[GLOBAL_WARMING_5] = pygame.image.load(os.path.join(IMG_DIR, 'AQUECIMENTO_GLOBAL_5.jpg')).convert_alpha()
-    assets[GLOBAL_WARMING_5] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
-
-    assets[GLOBAL_WARMING_6] = pygame.image.load(os.path.join(IMG_DIR, 'AQUECIMENTO_GLOBAL_6.jpg')).convert_alpha()
-    assets[GLOBAL_WARMING_6] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
+    assets[GLOBAL_WARMING_4] = pygame.transform.scale(assets[GLOBAL_WARMING_4], (WIDTH, HEIGHT))
 
     #Carrega os sons:
     
@@ -156,15 +147,13 @@ def load_assets():
     assets[MORDIDA_SND].set_volume(1)
 
     # Carrega as fontes:
-    assets[ANTARTICA_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'fonte titulo.ttf'), 65)
+    assets[ANTARTIDA_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'fonte titulo.ttf'), 20)
     
     assets[SCORE_FONT_END] = pygame.font.Font(os.path.join(FNT_DIR, 'score fonte.ttf'), 50)
     
     assets[SCORE_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'score fonte.ttf'), 28)
 
     assets[VIDA_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'PressStart2P.ttf'), 28)
-    
-    print(assets[SALMAOD_IMG])
 
     return assets  
 

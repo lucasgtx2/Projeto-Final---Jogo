@@ -7,7 +7,7 @@ from config import FPS, WIDTH, HEIGHT, INIT, QUIT
 def instrucoes_screen(window):
     assets = load_assets()
 
-    background = assets[INSTRUCOES]
+    background = assets[INSTRUCOES_IMG]
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
     background_rect = background.get_rect()
  

@@ -3,14 +3,14 @@
 import pygame
 import random
 import os
-from config import WIDTH, HEIGHT, INIT, GAME, QUIT, END, INSTRUCTIONS, ANTARTICA
+from config import WIDTH, HEIGHT, INIT, GAME, QUIT, END, INSTRUCTIONS, ANTARTIDA
 from init import init_screen
 from pinguim_game_screen import game_screen
 from codigo_para_os_sprites import *
 from assets import *
 from end import end_screen
 from instrucoes import instrucoes_screen
-from antartica import antartica_screen
+from antartica import antartida_screen
  
 pygame.init() 
 pygame.mixer.init()
@@ -25,12 +25,12 @@ assets = load_assets()
 
 i = 0
 while state != QUIT:
-
     if state == INIT:
         pygame.mixer.music.stop()
-        musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'musica-tela-inicial.wav'))
+        #musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'musica-tela-inicial.wav'))
 
-        #musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'violao-inicio.wav'))
+        musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'violao-inicio.wav'))
+        pygame.mixer.music.set_volume(3)
 
         pygame.mixer.music.play()
 
@@ -50,20 +50,21 @@ while state != QUIT:
 
         state, score = game_screen(window)
     
-    elif state == ANTARTICA and i==0:
+    elif state == ANTARTIDA and i==0:
+        assets[PINGUIM_MORREU_SND].play()
         pygame.mixer.music.stop()
         musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'violao-antartica.wav'))
         pygame.mixer.music.play()
 
-        state = antartica_screen(window)
+        state = antartida_screen(window)
 
-    elif state == END or state == ANTARTICA:
-        assets[PINGUIM_MORREU_SND].play()
+    elif state == END or state == ANTARTIDA:
+        if i != 0:
+            assets[PINGUIM_MORREU_SND].play()
         pygame.mixer.music.stop()
         musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'vento.wav'))
 
         pygame.mixer.music.play()
-        
         state = end_screen(window, score)
 
         i += 1
@@ -72,4 +73,4 @@ while state != QUIT:
         state = QUIT
 
 # ===== Finalização =====  
-pygame.quit()  # Função do PyGame que finaliza os recursos utilizados   
+pygame.quit()  # Função do PyGame que finaliza os recursos utilizados
