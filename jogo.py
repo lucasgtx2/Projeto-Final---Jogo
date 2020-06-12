@@ -27,6 +27,9 @@ while state != QUIT:
     if state == INIT:
         pygame.mixer.music.stop()
         musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'musica-tela-inicial.wav'))
+
+        #musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'violao-inicio.wav'))
+
         pygame.mixer.music.play()
 
         state = init_screen(window)
@@ -49,6 +52,9 @@ while state != QUIT:
         assets[PINGUIM_MORREU_SND].play()
         pygame.mixer.music.stop()
         musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'vento.wav'))
+
+        #musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'violao-antartica.wav'))
+
         pygame.mixer.music.play()
         
         state = end_screen(window, score)
