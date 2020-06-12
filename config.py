@@ -5,14 +5,14 @@ from os import path
 IMG_DIR = path.join(path.dirname(__file__), 'assets', 'imagens')
 
 SND_DIR = path.join(path.dirname(__file__), 'assets', 'sons')
- 
+  
 FNT_DIR = path.join(path.dirname(__file__), 'assets', 'fontes')
    
 # Dados gerais do jogo.
 WIDTH = 700 # Largura da tela
 HEIGHT = 600 # Altura da tela
 FPS = 60 # Frames por segundo
-
+  
 # Define tamanhos dos sprites
 PINGUIMD_WIDTH = 80
 PINGUIMD_HEIGHT = 30
@@ -42,4 +42,5 @@ INIT = 0
 INSTRUCTIONS = 1
 GAME = 2
 QUIT = 3
-END = 4  
+ANTARTICA = 4
+END = 5  

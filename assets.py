@@ -5,12 +5,12 @@ from config import IMG_DIR, SND_DIR, FNT_DIR, PINGUIMD_WIDTH, PINGUIMD_HEIGHT, \
     PINGUIMP_WIDTH, PINGUIMP_HEIGHT, SALMAOC_WIDTH, SALMAOC_HEIGHT, SALMAOD_WIDTH, \
         SALMAOD_HEIGHT, BOMBA_PEDRA_WIDTH, BOMBA_PEDRA_HEIGHT, WIDTH, HEIGHT
    
-   
+    
 # Define imagens do jogo:   
 BACKGROUND = 'background_img'
 
 BACKGROUND_2 = 'background_2_img'
-
+  
 INIT_BACKGROUND = 'init_background_img'
 
 INSTRUCOES = 'instrucoes_img'

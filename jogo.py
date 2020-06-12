@@ -10,7 +10,7 @@ from codigo_para_os_sprites import *
 from assets import *
 from end import end_screen
 from instrucoes import instrucoes_screen
-
+ 
 pygame.init() 
 pygame.mixer.init()
 
@@ -47,13 +47,18 @@ while state != QUIT:
         pygame.mixer.music.play()
 
         state, score = game_screen(window)
+    
+    elif state == ANTARTICA:
+        pygame.mixer.music.stop()
+        musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'violao-antartica.wav'))
+        pygame.mixer.music.play()
+
+        state = antartica_screen()
 
     elif state == END:
         assets[PINGUIM_MORREU_SND].play()
         pygame.mixer.music.stop()
         musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'vento.wav'))
-
-        #musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'violao-antartica.wav'))
 
         pygame.mixer.music.play()
         

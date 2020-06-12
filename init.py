@@ -10,7 +10,7 @@ def init_screen(window):
 
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
-    
+     
     #Carrega o fundo da tela inicial
     background = assets[INIT_BACKGROUND]
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))

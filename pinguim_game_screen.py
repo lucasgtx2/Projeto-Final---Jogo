@@ -1,7 +1,7 @@
 # Game screen
 import pygame
 import random
-from config import FPS, WIDTH, HEIGHT, BLACK, YELLOW, RED, END, QUIT, GAME
+from config import FPS, WIDTH, HEIGHT, BLACK, YELLOW, RED, END, QUIT, GAME, ANTARTICA
 from codigo_para_os_sprites import Pinguim, Carne, Salmaozao, Pedra, Bomba
 from assets import *
  
@@ -62,11 +62,9 @@ def game_screen(window):
     pedra_time2 = 55000
 
     pedra_inicial =  pygame.time.get_ticks()
-
-    pygame.mixer.music.play(loops=-1)
     
     # ===== Loop principal =====
-    while state != QUIT and state != END:
+    while state != QUIT and state != ANTARTICA:
         clock.tick(FPS)
         
         # ----- Trata eventos
@@ -227,7 +225,7 @@ def game_screen(window):
                 all_sprites.add(b)
                 all_bombas.add(b)
                 player.kill()
-                state = END
+                state = ANTARTICA
                 lives = 0
 
             # Verifica se pinguim comeu o salmãozão:  
@@ -241,7 +239,7 @@ def game_screen(window):
                 ultimo_poder = pygame.time.get_ticks()
         
         if lives == 0:
-            state = END
+            state = ANTARTICA
 
         # ----- Gera saídas
         if score < 7500:

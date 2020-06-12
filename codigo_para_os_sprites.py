@@ -11,7 +11,7 @@ class Pinguim(pygame.sprite.Sprite):
     def __init__(self, assets):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
-        
+         
         # Diferentes imagens do pinguim:
         pinguins = [assets[PINGUIMP_IMG], assets[PINGUIMP_FLIP_IMG], assets[PINGUIMD_IMG], assets[PINGUIMD_FLIP_IMG], \
             assets[PINGUIMPP_IMG], assets[PINGUIMPP_FLIP_IMG], assets[PINGUIMPD_IMG], assets[PINGUIMPD_FLIP_IMG]]
