@@ -13,7 +13,9 @@ Sons e uma música foram retirados do OpenGameArt.com
 
 Duas músicas autorais.
 
-Código-referência: Jogo da Navinha (Pinguim Faminto inteiro foi baseado nesse código).
+Código-referência: 
+Jogo da Navinha (Pinguim Faminto inteiro foi baseado nesse código).
+Notas de Aula - Design de Software
 
 
 Grupo: Guilherme Ricchetti, Lucas Teixeira, Matheus Venturi.
