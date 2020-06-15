@@ -4,7 +4,7 @@ import random
 import os
 from assets import *    
 from config import IMG_DIR, BLACK, FPS, QUIT, WIDTH, HEIGHT, INSTRUCTIONS, INIT, GAME
-from pinguim_game_screen import *  # para importar o score
+from game_screen import *  # para importar o score
  
 def end_screen(window, score):
     assets = load_assets()

@@ -5,7 +5,7 @@ from config import IMG_DIR, SND_DIR,PINGUIMD_WIDTH, PINGUIMD_HEIGHT, \
     PINGUIMP_WIDTH, PINGUIMP_HEIGHT, SALMAOC_WIDTH, SALMAOC_HEIGHT, SALMAOD_WIDTH, \
         SALMAOD_HEIGHT, BOMBA_PEDRA_WIDTH, BOMBA_PEDRA_HEIGHT, WIDTH, HEIGHT
 from assets import *
-from pinguim_game_screen import * 
+from game_screen import * 
 
 class Pinguim(pygame.sprite.Sprite):
     def __init__(self, assets):
