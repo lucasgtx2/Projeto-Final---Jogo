@@ -30,7 +30,7 @@ while state != QUIT:
         musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'violao-inicio.wav'))
         pygame.mixer.music.set_volume(2)
 
-        pygame.mixer.music.play()
+        pygame.mixer.music.play(-1)
 
         state = init_screen(window)
 
@@ -38,14 +38,14 @@ while state != QUIT:
         pygame.mixer.music.stop()
         musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'violao-inicio.wav'))
         pygame.mixer.music.set_volume(2)
-        pygame.mixer.music.play()
+        pygame.mixer.music.play(-1)
         
         state = instrucoes_screen(window)
 
     elif state == GAME:
         pygame.mixer.music.stop()
         musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'musica-de-fundo.wav'))
-        pygame.mixer.music.play()
+        pygame.mixer.music.play(-1)
 
         state, score = game_screen(window)
     
