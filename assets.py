@@ -55,9 +55,13 @@ PINGUIM_GRITO_SND = 'pinguim_grito_snd'
 PINGUIM_MORREU_SND = 'pinguim_morreu_snd'
 
 VENTO_SND = 'vento_snd'
+
 MUSICA_JOGO_SND = 'musica_do_jogo_snd'
+
 MUSICA_INICIAL_SND = 'musica_inicial_snd'
+
 PODER_SND = 'poder_snd'
+
 MORDIDA_SND = 'mordida_snd'
 
 # Define fontes do jogo:
@@ -139,15 +143,12 @@ def load_assets():
     
     assets[PINGUIM_GRITO_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'pinguim_gritou.ogg'))
     assets[PINGUIM_GRITO_SND].set_volume(3)
-
-    assets[PINGUIM_MORREU_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'pinguim_RIP.ogg'))
-    assets[PINGUIM_MORREU_SND].set_volume(2)
     
     assets[MORDIDA_SND] = pygame.mixer.Sound(os.path.join(SND_DIR, 'mordida-som.wav'))
     assets[MORDIDA_SND].set_volume(1)
 
     # Carrega as fontes:
-    assets[ANTARTIDA_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'fonte titulo.ttf'), 20)
+    assets[ANTARTIDA_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'Bongus.ttf'), 25)
     
     assets[SCORE_FONT_END] = pygame.font.Font(os.path.join(FNT_DIR, 'score fonte.ttf'), 50)
     
@@ -156,4 +157,3 @@ def load_assets():
     assets[VIDA_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'PressStart2P.ttf'), 28)
 
     return assets  
-

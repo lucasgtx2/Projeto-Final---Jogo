@@ -2,9 +2,9 @@
 import pygame
 import os
 from assets import * 
-from config import FPS, WIDTH, HEIGHT, QUIT, END, ANTARTIDA, BLACK
+from config import FPS, WIDTH, HEIGHT, QUIT, END, ANTARTIDA, RED
 
-
+ 
 def antartida_screen(window):
     assets = load_assets()
 
@@ -30,9 +30,13 @@ def antartida_screen(window):
     imagem4 = pygame.transform.scale(imagem4, (WIDTH, HEIGHT))
     lista_imagens.append(imagem3)
 
-    texto1 = 'O aquecimento global está comprometendo a vida de muitos animais que vivem no gelo'
+    texto1 = 'O aquecimento global esta comprometendo'
 
-    texto2 = 'Faça a sua parte, colabore com o meio ambiente e evite que mais pinguins morram de fome'
+    texto2 =  'a vida de muitos animais que vivem no gelo'
+
+    texto3 = 'Contribua com a sua parte, colabore com o meio ambiente'
+
+    texto4 = 'e evite que mais pinguins morram de fome'
 
     running = True
 
@@ -70,15 +74,25 @@ def antartida_screen(window):
             tempo_inicial = pygame.time.get_ticks()
 
         window.blit(fundo, imagem_rect)
-        texto1_surface = assets['antartida_font'].render(texto1, True, BLACK)
+        texto1_surface = assets['antartida_font'].render(texto1, True, RED)
         texto1_rect = texto1_surface.get_rect()
         texto1_rect.midtop = (WIDTH / 2, 30)
         window.blit(texto1_surface, texto1_rect)
 
-        texto2_surface = assets['antartida_font'].render(texto2, True, BLACK)
+        texto2_surface = assets['antartida_font'].render(texto2, True, RED)
         texto2_rect = texto2_surface.get_rect()
-        texto2_rect.midtop = (WIDTH / 2, 520)
+        texto2_rect.midtop = (WIDTH / 2, 70)
         window.blit(texto2_surface, texto2_rect)
+
+        texto3_surface = assets['antartida_font'].render(texto3, True, RED)
+        texto3_rect = texto3_surface.get_rect()
+        texto3_rect.midtop = (WIDTH / 2, 480)
+        window.blit(texto3_surface, texto3_rect)
+
+        texto4_surface = assets['antartida_font'].render(texto4, True, RED)
+        texto4_rect = texto4_surface.get_rect()
+        texto4_rect.midtop = (WIDTH / 2, 530)
+        window.blit(texto4_surface, texto4_rect)
 
         pygame.display.update()  # Mostra o novo frame para o jogador
 

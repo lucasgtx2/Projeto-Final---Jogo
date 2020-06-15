@@ -4,7 +4,7 @@ import random
 import os
 from assets import *    
 from config import IMG_DIR, BLACK, FPS, QUIT, WIDTH, HEIGHT, INSTRUCTIONS, INIT, GAME
-from pinguim_game_screen import * 
+from pinguim_game_screen import *  # para importar o score
  
 def end_screen(window, score):
     assets = load_assets()
@@ -12,6 +12,7 @@ def end_screen(window, score):
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
 
+    # Carregaando a imagem de fundo:
     game_over = assets[END_IMG]
     game_over = pygame.transform.scale(game_over, (WIDTH, HEIGHT))
     game_over_rect = game_over.get_rect()
@@ -47,22 +48,10 @@ def end_screen(window, score):
                 
                 running = False
 
-            # Passa para o jogo quando o jogador apertar "espaço"
-            if event.type == pygame.KEYDOWN:
-                keys_down[event.key] = True
-            
-                if event.key == pygame.K_SPACE:
-                    keys_down[event.key] = True
-                    state = GAME
-                    running = False
-                    
-                if event.key == pygame.K_DOWN:
-                    keys_down[event.key] = True
-                    state = INIT
-                    running = False
-
+        # Gera as imagens da tela:
         window.blit(game_over, game_over_rect)
         window.blit(pontuacao, pontuacao_rect)
+
         pygame.display.update()  # Mostra o novo frame para o jogador
     
     return state  

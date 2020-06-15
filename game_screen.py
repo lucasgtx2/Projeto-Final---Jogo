@@ -11,7 +11,7 @@ def game_screen(window):
     clock = pygame.time.Clock()
 
     assets = load_assets()
- 
+  
     #Criando grupos com os sprites:
     all_sprites = pygame.sprite.Group()
     all_carnes = pygame.sprite.Group()
@@ -231,6 +231,7 @@ def game_screen(window):
             # Verifica se pinguim comeu o salmãozão:  
             poder = pygame.sprite.spritecollide(player, all_salmao_inteiros, True, pygame.sprite.collide_mask)
             if len(poder) == 1:
+                assets[PODER_SND].play()
                 all_sprites.remove(novo_salmaozao)
                 all_salmao_inteiros.remove(novo_salmaozao)
                 player.state1 = 'PODEROSO'
@@ -238,8 +239,11 @@ def game_screen(window):
 
                 ultimo_poder = pygame.time.get_ticks()
         
-        if lives == 0:
+        if lives == 0:       # se pinguim morrer, roda o código da antartida
             state = ANTARTIDA
+
+        if lives > 4:    # vidas não podem passar de 4
+            lives = 4
 
         # ----- Gera saídas
         if score < 5000:

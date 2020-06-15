@@ -11,7 +11,7 @@ from assets import *
 from end import end_screen
 from instrucoes import instrucoes_screen
 from antartica import antartida_screen
- 
+  
 pygame.init() 
 pygame.mixer.init()
 
@@ -27,10 +27,8 @@ i = 0
 while state != QUIT:
     if state == INIT:
         pygame.mixer.music.stop()
-        #musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'musica-tela-inicial.wav'))
-
         musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'violao-inicio.wav'))
-        pygame.mixer.music.set_volume(3)
+        pygame.mixer.music.set_volume(2)
 
         pygame.mixer.music.play()
 
@@ -38,7 +36,8 @@ while state != QUIT:
 
     elif state == INSTRUCTIONS:
         pygame.mixer.music.stop()
-        musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'musica-tela-inicial.wav'))
+        musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'violao-inicio.wav'))
+        pygame.mixer.music.set_volume(2)
         pygame.mixer.music.play()
         
         state = instrucoes_screen(window)
@@ -51,7 +50,6 @@ while state != QUIT:
         state, score = game_screen(window)
     
     elif state == ANTARTIDA and i==0:
-        assets[PINGUIM_MORREU_SND].play()
         pygame.mixer.music.stop()
         musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'violao-antartica.wav'))
         pygame.mixer.music.play()
@@ -60,12 +58,11 @@ while state != QUIT:
 
     elif state == END or state == ANTARTIDA:
         if i != 0:
-            assets[PINGUIM_MORREU_SND].play()
-        pygame.mixer.music.stop()
-        musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'vento.wav'))
+            pygame.mixer.music.stop()
+            musica = pygame.mixer.music.load(os.path.join(SND_DIR, 'vento.wav'))
 
-        pygame.mixer.music.play()
-        state = end_screen(window, score)
+            pygame.mixer.music.play()
+            state = end_screen(window, score)
 
         i += 1
 
