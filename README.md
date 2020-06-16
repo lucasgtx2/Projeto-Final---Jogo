@@ -17,6 +17,8 @@ Código-referência:
 Jogo da Navinha (Pinguim Faminto inteiro foi baseado nesse código).
 Notas de Aula - Design de Software
 
+Link do vídeo do jogo no YouTube: https://youtu.be/mSGdsOSDAjk
+
 
 Grupo: Guilherme Ricchetti, Lucas Teixeira, Matheus Venturi.
 
